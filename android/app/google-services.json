@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "929931134561",
+    "firebase_url": "https://tamas-3f0eb.firebaseio.com",
+    "project_id": "tamas-3f0eb",
+    "storage_bucket": "tamas-3f0eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929931134561:android:80f86892a9af112b764c20",
+        "android_client_info": {
+          "package_name": "com.youssefahmed.felmalaab_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929931134561-1b9bd828vg3pon5t0oqpilgh8o4cdtps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAG0C-C78xwg_WPCebk_CMMvDxB6JRmXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929931134561-1b9bd828vg3pon5t0oqpilgh8o4cdtps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929931134561:android:3e5beba85c9918aa764c20",
+        "android_client_info": {
+          "package_name": "com.youssefahmed.instad_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929931134561-1b9bd828vg3pon5t0oqpilgh8o4cdtps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAG0C-C78xwg_WPCebk_CMMvDxB6JRmXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929931134561-1b9bd828vg3pon5t0oqpilgh8o4cdtps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929931134561:android:e763093b8791e05a764c20",
+        "android_client_info": {
+          "package_name": "com.youssefahmed.instaduser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929931134561-1b9bd828vg3pon5t0oqpilgh8o4cdtps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAG0C-C78xwg_WPCebk_CMMvDxB6JRmXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929931134561-1b9bd828vg3pon5t0oqpilgh8o4cdtps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
