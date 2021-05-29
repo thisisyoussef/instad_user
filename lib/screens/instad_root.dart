@@ -5,6 +5,9 @@ import 'package:instad_user/screens/map_screen.dart';
 import 'package:instad_user/screens/venuesScreen/venues_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';
+import 'package:instad_user/models/venue_list.dart';
+import 'package:instad_user/models/venue.dart';
+import 'package:provider/provider.dart';
 
 final _firestore = FirebaseFirestore.instance;
 List<ListCard> listCards = [];
@@ -39,6 +42,8 @@ class VenueListStream extends StatelessWidget {
         }
         final fields = snapshot.data.docs;
         listCards.clear();
+        Provider.of<VenueList>(context, listen: false).venues.clear();
+
         for (var field in fields) {
           final bool approved = field.data()['approved'];
           final String Id = field.id;
@@ -46,7 +51,9 @@ class VenueListStream extends StatelessWidget {
           final String area = field.data()['Area'];
           final double rating = field.data()['Rating'];
           final List sports = field.data()['Sports'];
-          final int price = field.data()["price"];
+          final double truePrice = field.data()['price'];
+          final int price = truePrice.toInt();
+          print("Price is " + price.toString());
           double latitude;
           double longitude;
           final listCard = ListCard(
@@ -59,11 +66,41 @@ class VenueListStream extends StatelessWidget {
             venueSports: sports,
             venuePrice: price,
           );
-          listCards.add(listCard);
+          final venue = Venue(
+            venueArea: area,
+            venueDistance: 5,
+            venueRating: rating,
+            venueId: Id,
+            venueName: name,
+            venueSports: sports,
+            venuePrice: price,
+          );
+          //listCards.add(listCard);
+          if (Provider.of<VenueList>(context, listen: false).venues == null ||
+              !Provider.of<VenueList>(context, listen: false).inList(venue)) {
+            Provider.of<VenueList>(context, listen: false).addVenue(venue);
+          }
         }
+
+        for (var venue
+            in Provider.of<VenueList>(context, listen: false).venues) {
+          if (listCards == null || !listCards.contains(venue)) {
+            final listCard = ListCard(
+              venueArea: venue.venueArea,
+              venueDistance: venue.venueDistance,
+              venueRating: venue.venueRating,
+              venueId: venue.venueId,
+              venueName: venue.venueName,
+              venueSports: venue.venueSports,
+              venuePrice: venue.venuePrice,
+            );
+            listCards.add(listCard);
+          }
+        }
+
         return homePage == false
-            ? VenuesScreen(listCards)
-            : HomePage(listCards);
+            ? VenuesScreen(/*listCards*/)
+            : HomePage(/*listCards*/);
       },
     );
   }
@@ -105,7 +142,53 @@ class _InstadRootState extends State<InstadRoot> with TickerProviderStateMixin {
   TabController _tabController;
   @override
   void initState() {
+    _firestore.collection('locations').get().then((querySnapshot) {
+      querySnapshot.docs.forEach((location) {
+        final bool approved = location.data()['approved'];
+        final String Id = location.id;
+        final String name = location.data()['name'];
+        final String area = location.data()['Area'];
+        final double rating = location.data()['Rating'];
+        final List sports = location.data()['Sports'];
+        final int price = location.data()['price'];
+        final List amenities = location.data()['amenities'];
+        final GeoPoint geoPoint = location.data()['location'];
+        //final int price = truePrice.toInt();
+        print("Location is " + geoPoint.toString());
+        final venue = Venue(
+          venueArea: area,
+          venueDistance: 5,
+          venueRating: rating,
+          venueId: Id,
+          venueName: name,
+          venueSports: sports,
+          venuePrice: price,
+          location: geoPoint,
+          venueAmenities: amenities,
+        );
+        if (Provider.of<VenueList>(context, listen: false).venues == null ||
+            !Provider.of<VenueList>(context, listen: false).inList(venue)) {
+          Provider.of<VenueList>(context, listen: false).addVenue(venue);
+        }
+      });
+
+      for (var venue in Provider.of<VenueList>(context, listen: false).venues) {
+        if (listCards == null || !listCards.contains(venue)) {
+          final listCard = ListCard(
+            venueArea: venue.venueArea,
+            venueDistance: venue.venueDistance,
+            venueRating: venue.venueRating,
+            venueId: venue.venueId,
+            venueName: venue.venueName,
+            venueSports: venue.venueSports,
+            venuePrice: venue.venuePrice,
+          );
+          listCards.add(listCard);
+        }
+      }
+    });
     _tabController = TabController(length: tabs.length, vsync: this);
+
     super.initState();
     // TODO: implement initState
   }
@@ -117,10 +200,8 @@ class _InstadRootState extends State<InstadRoot> with TickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          VenueListStream(homePage: true),
-          VenueListStream(
-            homePage: false,
-          ),
+          HomePage(),
+          VenuesScreen(),
           MapScreen(),
           Container(),
         ],

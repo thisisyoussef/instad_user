@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'select_time_button.dart';
+import 'package:instad_user/generalWidgets/tiles/amenity_tile.dart';
 
 class SelectTimeGrid extends StatelessWidget {
   const SelectTimeGrid({
     Key key,
     @required this.isAm,
-    @required this.timeslotsAM,
+    @required this.childrenList,
+    @required this.isAmenitiesGrid,
   }) : super(key: key);
-
   final bool isAm;
-  final List<Timestamp> timeslotsAM;
-
+  final List childrenList;
+  final bool isAmenitiesGrid;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          isAm ? 'AM' : 'PM',
+          !isAmenitiesGrid
+              ? isAm
+                  ? 'AM'
+                  : 'PM'
+              : "",
           style: TextStyle(
             fontFamily: 'Montserrat',
             fontSize: 14,
@@ -32,19 +36,25 @@ class SelectTimeGrid extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Column(
               children: [
-                for (int i = 0; i < timeslotsAM.length; i += 3)
+                for (int i = 0; i < childrenList.length; i += 3)
                   Padding(
                     padding: EdgeInsets.only(
                         top: i > 2 ? 16.0 : 0, left: 5, right: 5),
                     child: Row(
                       children: [
                         for (int j = i;
-                            (j % 3 != 0 && j < timeslotsAM.length) || j == i;
+                            (j % 3 != 0 && j < childrenList.length) || j == i;
                             j++)
-                          SelectTimeButton(
-                            timeSlot: timeslotsAM[j],
-                            isAm: isAm,
-                          ),
+                          isAmenitiesGrid
+                              ? Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child:
+                                      AmenityTile(childrenList[j].toString()),
+                                )
+                              : SelectTimeButton(
+                                  timeSlot: childrenList[j],
+                                  isAm: isAm,
+                                ),
                       ],
                     ),
                   ),

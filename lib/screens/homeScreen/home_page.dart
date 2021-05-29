@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:google_static_maps_controller/google_static_maps_controller.dart';
 import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';
 import 'sportsCardGrid/sports_card_grid.dart';
 import 'horizontal_card_view.dart';
+import 'package:provider/provider.dart';
+import 'package:instad_user/models/venue_list.dart';
+import 'package:instad_user/functions/build_listCards.dart';
 
 class HomePage extends StatelessWidget {
   List<ListCard> listCards = [];
-  HomePage(this.listCards);
+  HomePage();
 
   @override
   Widget build(BuildContext context) {
+    buildListCards(context, listCards);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(top: 88.0),

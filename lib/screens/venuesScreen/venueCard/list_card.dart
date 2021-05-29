@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:instad_user/screens/venueProfilePage/venue_profile_page.dart';
 import 'package:instad_user/services/venue_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'map_button.dart';
+import '../../../generalWidgets/tiles/map_button.dart';
 import 'venueImageCard/venue_image_card.dart';
 import 'dropdown_button.dart';
 import 'package:instad_user/generalWidgets/image_builder.dart';
@@ -19,6 +20,8 @@ class ListCard extends StatefulWidget {
     this.venueDistance,
     this.venueSports,
     this.venuePrice,
+    this.location,
+    this.venueAmenities,
   });
   final String venueName;
   final String venueArea;
@@ -28,6 +31,8 @@ class ListCard extends StatefulWidget {
   final String venueId;
   final List venueSports;
   final int venuePrice;
+  final GeoPoint location;
+  final List venueAmenities;
   @override
   _ListCardState createState() => _ListCardState();
 }
@@ -54,6 +59,15 @@ class _ListCardState extends State<ListCard> {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => VenueProfilePage(
                     venueImage: venueImage,
+                    venueId: widget.venueId,
+                    venuePrice: widget.venuePrice,
+                    venueName: widget.venueName,
+                    venueArea: widget.venueArea,
+                    venueRating: widget.venueRating,
+                    venueDistance: widget.venueDistance,
+                    venueSports: widget.venueSports,
+                    location: widget.location,
+                    venueAmenities: widget.venueAmenities,
                   )));
 
           // Navigator.pushNamed(context, VenuePage.id);
@@ -103,7 +117,9 @@ class _ListCardState extends State<ListCard> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
-                      child: MapButton(),
+                      child: MapButton(
+                        miniView: false,
+                      ),
                     ),
                   ],
                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instad_user/generalWidgets/sport_as_icon_data.dart';
+import 'package:instad_user/generalWidgets/string_to_icon_data.dart';
 
 class SportIcon extends StatelessWidget {
   final String sport;
@@ -15,7 +15,7 @@ class SportIcon extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Icon(
-          SportAsIconData(sport),
+          StringToIconData(sport),
           color: Colors.white,
         ),
       ),

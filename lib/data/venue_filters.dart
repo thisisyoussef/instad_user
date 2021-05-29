@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:instad_user/models/timeslot.dart';
 
 class VenueFilters extends ChangeNotifier {
   String _area = "Tagamoa";

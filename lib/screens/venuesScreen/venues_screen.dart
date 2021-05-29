@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:instad_user/data/venue_filters.dart';
+import 'package:instad_user/functions/build_listCards.dart';
 import 'package:instad_user/screens/filterModal/filter_screen.dart';
 import 'venueCard/list_card.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:instad_user/models/venue_list.dart';
 
 class VenuesScreen extends StatefulWidget {
   static String id = "venues_screen";
   List<ListCard> listCards = [];
-  VenuesScreen(this.listCards);
+  VenuesScreen();
   @override
   _VenuesScreenState createState() => _VenuesScreenState();
 }
@@ -16,6 +18,7 @@ class VenuesScreen extends StatefulWidget {
 class _VenuesScreenState extends State<VenuesScreen> {
   @override
   Widget build(BuildContext context) {
+    buildListCards(context, widget.listCards);
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -144,6 +147,8 @@ class _VenuesScreenState extends State<VenuesScreen> {
                             approved: listCard.approved,
                             venueSports: listCard.venueSports,
                             venuePrice: listCard.venuePrice,
+                            location: listCard.location,
+                            venueAmenities: listCard.venueAmenities,
                           )
                         : Container();
                   },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instad_user/data/instad_data.dart';
+import 'package:instad_user/models/venue_list.dart';
 import 'package:instad_user/services/venue_details.dart';
 import 'package:instad_user/data/venue_filters.dart';
 import 'file:///C:/Users/youss/AndroidStudioProjects/instad_user/lib/screens/loginScreen/login_page.dart';
@@ -15,7 +16,7 @@ import 'screens/instad_root.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
 import 'selected_location.dart';
-
+import 'package:instad_user/data/booking_selections.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -38,6 +39,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => InstadData()),
         ChangeNotifierProvider(create: (context) => VenueDetails()),
         ChangeNotifierProvider(create: (context) => SelectedLocation()),
+        ChangeNotifierProvider(create: (context) => VenueList()),
+        ChangeNotifierProvider(create: (context) => BookingSelections()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

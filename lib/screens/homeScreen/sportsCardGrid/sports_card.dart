@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instad_user/generalWidgets/sport_as_icon_data.dart';
+import 'package:instad_user/generalWidgets/string_to_icon_data.dart';
 
 class SportsCard extends StatelessWidget {
   const SportsCard({Key key, this.sport}) : super(key: key);
@@ -32,7 +32,7 @@ class SportsCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 4.0),
             child: Icon(
-              SportAsIconData(sport),
+              StringToIconData(sport),
               color: Colors.white,
               size: 60,
             ),
