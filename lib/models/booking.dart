@@ -6,6 +6,7 @@ class Booking {
   final String uid;
   DateTime startTime;
   DateTime endTime;
+  int price;
   Color background = Color(0xFF50B184);
   bool isRecurring = false;
   bool isAllDay = false;
@@ -15,6 +16,7 @@ class Booking {
       this.startTime,
       this.endTime,
       this.uid,
+      this.price,
       @required this.isAllDay,
       @required this.isRecurring});
 }

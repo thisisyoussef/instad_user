@@ -2,12 +2,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:instad_user/screens/homeScreen/home_page.dart';
 import 'package:instad_user/screens/map_screen.dart';
+import 'package:instad_user/screens/profile_page.dart';
 import 'package:instad_user/screens/venuesScreen/venues_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';
 import 'package:instad_user/models/venue_list.dart';
 import 'package:instad_user/models/venue.dart';
 import 'package:provider/provider.dart';
+import 'package:instad_user/models/booking.dart';
+import 'package:instad_user/models/timeslot.dart';
 
 final _firestore = FirebaseFirestore.instance;
 List<ListCard> listCards = [];
@@ -203,7 +206,7 @@ class _InstadRootState extends State<InstadRoot> with TickerProviderStateMixin {
           HomePage(),
           VenuesScreen(),
           MapScreen(),
-          Container(),
+          ProfilePage(),
         ],
       ),
       bottomNavigationBar: Material(

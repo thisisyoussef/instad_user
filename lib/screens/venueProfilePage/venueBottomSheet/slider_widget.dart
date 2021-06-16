@@ -1,8 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'file:///C:/Users/youss/AndroidStudioProjects/instad_user/lib/screens/bookedPage/booked_page.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:provider/provider.dart';
+import 'package:instad_user/data/booking_selections.dart';
 
 class SliderWidget extends StatefulWidget {
+  SliderWidget({this.venueId});
+  final String venueId;
   @override
   _SliderWidgetState createState() => _SliderWidgetState();
 }
@@ -132,12 +139,18 @@ class _SliderWidgetState extends State<SliderWidget> {
   void _onDragEnd(DragEndDetails details) {
     if (value > 0.9) {
       value = 1;
+      Provider.of<BookingSelections>(context, listen: false).bookVenue(
+        widget.venueId,
+      );
+      setState(() {
+        _width = _maxWidth * value;
+        booked = value > 0.9;
+      });
+      Provider.of<BookingSelections>(context, listen: false).clearSelections();
+      //sleep(const Duration(seconds: 2));
+      Navigator.pushNamed(context, BookedPage.id);
     } else {
       value = 0;
     }
-    setState(() {
-      _width = _maxWidth * value;
-      booked = value > 0.9;
-    });
   }
 }

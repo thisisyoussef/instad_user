@@ -8,6 +8,7 @@ import 'package:instad_user/models/venue_list.dart';
 import 'package:instad_user/functions/build_listCards.dart';
 
 class HomePage extends StatelessWidget {
+  static String id = "home_page";
   List<ListCard> listCards = [];
   HomePage();
 
@@ -30,7 +31,10 @@ class HomePage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0, top: 4, left: 0),
-              child: HorizontalCardView(listCards: listCards),
+              child: HorizontalCardView(
+                listCards: listCards,
+                isMapView: false,
+              ),
             ),
           ],
         ),

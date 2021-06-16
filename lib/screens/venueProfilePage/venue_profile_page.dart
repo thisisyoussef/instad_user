@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instad_user/generalWidgets/tiles/map_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'venue_page_header.dart';
-import 'select_time_grid.dart';
+import 'pageContent/venue_page_header.dart';
+import 'selectTimeGrid/select_time_grid.dart';
 import 'package:google_static_maps_controller/google_static_maps_controller.dart';
 import 'package:instad_user/models/timeslot.dart';
-import 'venue_bottom_sheet.dart';
+import 'venueBottomSheet/venue_bottom_sheet.dart';
 import 'package:instad_user/data/booking_selections.dart';
-import 'venue_info.dart';
-import 'header_text.dart';
+import 'pageContent/venue_info.dart';
+import 'pageContent/header_text.dart';
 import 'package:provider/provider.dart';
 
 class VenueProfilePage extends StatefulWidget {
@@ -172,7 +172,7 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                         child: HeaderText(headerText: "LOCATION"),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 16.0, bottom: 70),
+                        padding: const EdgeInsets.only(top: 16.0, bottom: 0),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: ClipRRect(
@@ -232,12 +232,14 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                 )),
               ],
             ),
-            bottomSheet: (Provider.of<BookingSelections>(context, listen: true)
+            bottomNavigationBar: (Provider.of<BookingSelections>(context,
+                        listen: true)
                     .timeslotSelected())
                 ? VenueBottomSheet(
                     venueName: widget.venueName,
                     venueArea: widget.venueArea,
                     venuePrice: widget.venuePrice,
+                    venueId: widget.venueId,
                     bookings:
                         (Provider.of<BookingSelections>(context, listen: true)
                             .getBookings()),
@@ -249,30 +251,6 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
           ),
         );
       },
-    );
-  }
-}
-
-class HeaderText extends StatelessWidget {
-  const HeaderText({
-    Key key,
-    @required this.headerText,
-  }) : super(key: key);
-
-  final String headerText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      headerText,
-      style: TextStyle(
-        fontFamily: 'Chakra Petch',
-        fontSize: 18,
-        color: const Color(0xff2b8116),
-        letterSpacing: 1.5,
-        fontWeight: FontWeight.w700,
-      ),
-      textAlign: TextAlign.left,
     );
   }
 }

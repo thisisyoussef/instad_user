@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:instad_user/data/instad_data.dart';
 import 'package:instad_user/models/venue_list.dart';
+import 'file:///C:/Users/youss/AndroidStudioProjects/instad_user/lib/screens/bookedPage/booked_page.dart';
+import 'package:instad_user/screens/homeScreen/home_page.dart';
+import 'package:instad_user/screens/loginScreen/login_page.dart';
+import 'package:instad_user/screens/register_screen.dart';
 import 'package:instad_user/services/venue_details.dart';
 import 'package:instad_user/data/venue_filters.dart';
-import 'file:///C:/Users/youss/AndroidStudioProjects/instad_user/lib/screens/loginScreen/login_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:instad_user/screens/venueProfilePage/venue_profile_page.dart';
 import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';
 import 'package:instad_user/screens/venuesScreen/venues_screen.dart';
-import 'file:///C:/Users/youss/AndroidStudioProjects/instad_user/lib/screens/filterModal/filter_screen.dart';
 import 'package:instad_user/services/geolocator_screen.dart';
 import 'package:provider/provider.dart';
 import 'screens/instad_root.dart';
@@ -17,6 +19,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
 import 'selected_location.dart';
 import 'package:instad_user/data/booking_selections.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -64,8 +67,11 @@ class MyApp extends StatelessWidget {
         routes: {
           InstadRoot.id: (context) => InstadRoot(),
           LoginPage.id: (context) => LoginPage(),
+          HomePage.id: (context) => HomePage(),
           //FilterScreen.id: (context) => FilterScreen(),
           VenueProfilePage.id: (context) => VenueProfilePage(),
+          BookedPage.id: (context) => BookedPage(),
+          RegisterScreen.id: (context) => RegisterScreen(),
           //ListCard.id: (context) => ListCard(),
           //VenuesScreen.id: (context) => VenuesScreen(listCards)
         },

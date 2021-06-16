@@ -33,7 +33,7 @@ class SelectTimeButton extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: isAm ? 0.0 : 8.0),
                   child: Text(
-                    (!isAm
+                    (!isAm && timeSlot.time.toDate().hour != 12
                             ? timeSlot.time.toDate().hour - 12
                             : timeSlot.time.toDate().hour)
                         .toString(),

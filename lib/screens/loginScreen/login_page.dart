@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:instad_user/screens/register_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import '../../data/user_details.dart';
 import '../instad_root.dart';
@@ -43,12 +44,14 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               children: <Widget>[
-                SizedBox(height: 75),
-                Container(
-                  height: MediaQuery.of(context).size.height / 5,
-                  width: MediaQuery.of(context).size.height,
-                  child: Image.asset('assets/images/instadLogo.png',
-                      width: 102, height: 34),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 5,
+                    width: MediaQuery.of(context).size.height,
+                    child: Image.asset('assets/images/instadLogo.png',
+                        width: 102, height: 34),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: newheight * 0.02),
@@ -109,20 +112,25 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: newheight * 0.02),
-                  child: Text(
-                    'SIGN UP WITH EMAIL',
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 18,
-                      color: const Color(0xff2b8116),
-                      letterSpacing: 1.68,
-                      fontWeight: FontWeight.w700,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, RegisterScreen.id);
+                    },
+                    child: Text(
+                      'SIGN UP WITH EMAIL',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontSize: 18,
+                        color: const Color(0xff2b8116),
+                        letterSpacing: 1.68,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      textAlign: TextAlign.left,
                     ),
-                    textAlign: TextAlign.left,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: newheight * 0.04),
+                  padding: EdgeInsets.only(top: newheight * 0.02),
                   child: Text(
                     'Or',
                     style: TextStyle(
@@ -136,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: newheight * 0.08),
+                  padding: EdgeInsets.only(top: newheight * 0.04),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
