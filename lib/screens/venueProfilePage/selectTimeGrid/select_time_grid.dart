@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'select_time_button.dart';
 import 'package:instad_user/generalWidgets/tiles/amenity_tile.dart';
@@ -32,34 +33,45 @@ class SelectTimeGrid extends StatelessWidget {
           textAlign: TextAlign.left,
         ),
         Container(
+          width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Column(
-              children: [
-                for (int i = 0; i < childrenList.length; i += 3)
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: i > 2 ? 16.0 : 0, left: 5, right: 5),
-                    child: Row(
-                      children: [
-                        for (int j = i;
-                            (j % 3 != 0 && j < childrenList.length) || j == i;
-                            j++)
-                          isAmenitiesGrid
-                              ? Padding(
-                                  padding: const EdgeInsets.only(right: 10.0),
-                                  child:
-                                      AmenityTile(childrenList[j].toString()),
-                                )
-                              : SelectTimeButton(
-                                  timeSlot: childrenList[j],
-                                  isAm: isAm,
-                                ),
-                      ],
-                    ),
+            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 4),
+            child: isAmenitiesGrid
+                ? Wrap(
+                    spacing: isAmenitiesGrid ? 10 : 4,
+                    runSpacing: isAmenitiesGrid ? 10 : 12,
+                    children: [
+                      for (int i = 0; i < childrenList.length; i++)
+                        isAmenitiesGrid
+                            ? AmenityTile(childrenList[i].toString())
+                            : SelectTimeButton(
+                                timeSlot: childrenList[i],
+                                isAm: isAm,
+                              ),
+                    ],
+                  )
+                : Table(
+                    children: <TableRow>[
+                      for (int i = 0; i < childrenList.length; i += 3)
+                        TableRow(children: <Widget>[
+                          for (int j = i; (j % 3 != 0 || j == i); j++)
+                            TableCell(
+                              child: j < childrenList.length
+                                  ? Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 4.0),
+                                      child: SelectTimeButton(
+                                        timeSlot: childrenList[j],
+                                        isAm: isAm,
+                                      ),
+                                    )
+                                  : Container(
+                                      width: 110,
+                                    ),
+                            ),
+                        ])
+                    ],
                   ),
-              ],
-            ),
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(17.0),

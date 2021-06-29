@@ -56,19 +56,22 @@ class _ListCardState extends State<ListCard> {
         onTap: () {
           print(widget.venueId);
 
-          Navigator.of(context).push(MaterialPageRoute(
+          Navigator.of(context).push(
+            MaterialPageRoute(
               builder: (context) => VenueProfilePage(
-                    venueImage: venueImage,
-                    venueId: widget.venueId,
-                    venuePrice: widget.venuePrice,
-                    venueName: widget.venueName,
-                    venueArea: widget.venueArea,
-                    venueRating: widget.venueRating,
-                    venueDistance: widget.venueDistance,
-                    venueSports: widget.venueSports,
-                    location: widget.location,
-                    venueAmenities: widget.venueAmenities,
-                  )));
+                venueImage: venueImage,
+                venueId: widget.venueId,
+                venuePrice: widget.venuePrice,
+                venueName: widget.venueName,
+                venueArea: widget.venueArea,
+                venueRating: widget.venueRating,
+                venueDistance: widget.venueDistance,
+                venueSports: widget.venueSports,
+                location: widget.location,
+                venueAmenities: widget.venueAmenities,
+              ),
+            ),
+          );
 
           // Navigator.pushNamed(context, VenuePage.id);
         },

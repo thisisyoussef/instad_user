@@ -44,11 +44,13 @@ class _HorizontalCardViewState extends State<HorizontalCardView> {
       ScrollController(initialScrollOffset: 0.0);
   Widget build(BuildContext context) {
     setState(() {
-      widget.scrollTo(scrollController);
+      try {
+        widget.scrollTo(scrollController);
+      } catch (e) {}
     });
 
     return Container(
-      //height: 112,
+      height: 112,
       width: MediaQuery.of(context).size.width,
       child: ListView.builder(
         controller: scrollController,

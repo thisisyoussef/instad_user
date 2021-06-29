@@ -9,9 +9,14 @@ final _firestore = FirebaseFirestore.instance;
 
 class BookingSelections extends ChangeNotifier {
   DateTime _selectedDay;
+  String latestBookingId;
   List<Timestamp> _selectedBookings = [];
   bool isSelected(Timestamp selectedBooking) {
     return _selectedBookings.contains(selectedBooking);
+  }
+
+  String getLatestBooking() {
+    return latestBookingId;
   }
 
   void clearSelections() {
@@ -77,7 +82,7 @@ class BookingSelections extends ChangeNotifier {
                 .add(Duration(hours: 1))),
         'location': venueId,
         'price': _selectedBookings.length * 200,
-      });
+      }).then((value) => latestBookingId = value.id);
     }
   }
 }

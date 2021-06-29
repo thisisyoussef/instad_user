@@ -7,34 +7,42 @@ class AmenityTile extends StatelessWidget {
   final String amentiy;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        color: const Color(0x65d1eacc),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
-        child: Row(
-          children: [
-            Icon(
-              StringToIconData(amentiy),
-              color: const Color(0xff2b8116),
+    return UnconstrainedBox(
+      child: Row(
+        children: [
+          Container(
+            //width: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              color: const Color(0x65d1eacc),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 7.0),
-              child: Text(
-                amentiy,
-                style: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontSize: 18,
-                  color: const Color(0xff2b8116),
-                  fontWeight: FontWeight.w500,
-                ),
-                textAlign: TextAlign.left,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
+              child: Row(
+                children: [
+                  Icon(
+                    StringToIconData(amentiy),
+                    color: const Color(0xff2b8116),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 7.0),
+                    child: Text(
+                      amentiy,
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontSize: 18,
+                        color: const Color(0xff2b8116),
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
