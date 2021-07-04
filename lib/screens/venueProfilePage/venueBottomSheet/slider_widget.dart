@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/youss/AndroidStudioProjects/instad_user/lib/screens/bookedPage/booked_page.dart';
+import 'package:instad_user/screens/bookedPage/booked_page.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:provider/provider.dart';
 import 'package:instad_user/data/booking_selections.dart';
@@ -137,7 +137,9 @@ class _SliderWidgetState extends State<SliderWidget> {
   }
 
   void _onDragEnd(DragEndDetails details) {
+    print("Drag end");
     if (value > 0.9) {
+      print("Booking..");
       value = 1;
       Provider.of<BookingSelections>(context, listen: false).bookVenue(
         widget.venueId,
@@ -148,7 +150,11 @@ class _SliderWidgetState extends State<SliderWidget> {
       });
       Provider.of<BookingSelections>(context, listen: false).clearSelections();
       //sleep(const Duration(seconds: 2));
-      Navigator.pushNamed(context, BookedPage.id);
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => BookedPage(
+            booking: Provider.of<BookingSelections>(context, listen: false)
+                .getLatestBooking()),
+      ));
     } else {
       value = 0;
     }

@@ -1,8 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:instad_user/functions/build_listCards.dart';
 import 'package:instad_user/screens/homeScreen/home_page.dart';
 import 'package:instad_user/screens/map_screen.dart';
 import 'package:instad_user/screens/profile_page.dart';
+import 'package:instad_user/screens/venue_request_page.dart';
 import 'package:instad_user/screens/venuesScreen/venues_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';
@@ -16,6 +18,9 @@ final _firestore = FirebaseFirestore.instance;
 List<ListCard> listCards = [];
 
 class InstadRoot extends StatefulWidget {
+  static GlobalKey InstadRootStateKey = new GlobalKey<_InstadRootState>();
+  static TabController tabController;
+
   static String id = "home_screen";
   @override
   _InstadRootState createState() => _InstadRootState();
@@ -103,7 +108,7 @@ class VenueListStream extends StatelessWidget {
 
         return homePage == false
             ? VenuesScreen(/*listCards*/)
-            : HomePage(/*listCards*/);
+            : HomePage(listCards);
       },
     );
   }
@@ -142,7 +147,6 @@ class _InstadRootState extends State<InstadRoot> with TickerProviderStateMixin {
       ),
     ),
   ];
-  TabController _tabController;
   @override
   void initState() {
     _firestore.collection('locations').get().then((querySnapshot) {
@@ -190,10 +194,9 @@ class _InstadRootState extends State<InstadRoot> with TickerProviderStateMixin {
         }
       }
     });
-    _tabController = TabController(length: tabs.length, vsync: this);
+    InstadRoot.tabController = TabController(length: tabs.length, vsync: this);
 
     super.initState();
-    // TODO: implement initState
   }
 
   @override
@@ -201,10 +204,11 @@ class _InstadRootState extends State<InstadRoot> with TickerProviderStateMixin {
     return Scaffold(
       appBar: null,
       body: TabBarView(
-        controller: _tabController,
+        physics: NeverScrollableScrollPhysics(),
+        controller: InstadRoot.tabController,
         children: <Widget>[
-          HomePage(),
-          VenuesScreen(),
+          HomePage(listCards),
+          VenueRequestPage(),
           MapScreen(),
           ProfilePage(),
         ],
@@ -212,7 +216,7 @@ class _InstadRootState extends State<InstadRoot> with TickerProviderStateMixin {
       bottomNavigationBar: Material(
         color: Colors.white,
         child: TabBar(
-          controller: _tabController,
+          controller: InstadRoot.tabController,
           tabs: tabs,
         ),
       ),

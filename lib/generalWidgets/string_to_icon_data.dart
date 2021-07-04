@@ -31,9 +31,27 @@ IconData StringToIconData(String input) {
                                                   : input == "Location"
                                                       ? Icons
                                                           .location_on_outlined
-                                                      : input == "Calendar"
+                                                      : input == "Areas"
                                                           ? Icons
-                                                              .calendar_today_rounded
-                                                          : null;
+                                                              .location_on_outlined
+                                                          : input == "Calendar"
+                                                              ? Icons
+                                                                  .calendar_today_rounded
+                                                              : input == "Time"
+                                                                  ? Icons
+                                                                      .access_time_rounded
+                                                                  : input ==
+                                                                          "Date"
+                                                                      ? Icons
+                                                                          .calendar_today
+                                                                      : input ==
+                                                                              "Price"
+                                                                          ? Icons
+                                                                              .attach_money_outlined
+                                                                          : input == "Amenities"
+                                                                              ? Icons.wc_outlined
+                                                                              : input == "Rating"
+                                                                                  ? Icons.star_outline
+                                                                                  : null;
   return icon;
 }

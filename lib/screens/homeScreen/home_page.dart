@@ -3,43 +3,44 @@ import 'package:google_static_maps_controller/google_static_maps_controller.dart
 import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';
 import 'sportsCardGrid/sports_card_grid.dart';
 import 'horizontal_card_view.dart';
-import 'package:provider/provider.dart';
-import 'package:instad_user/models/venue_list.dart';
 import 'package:instad_user/functions/build_listCards.dart';
 
 class HomePage extends StatelessWidget {
   static String id = "home_page";
-  List<ListCard> listCards = [];
-  HomePage();
+  final List<ListCard> listCards;
+  HomePage(this.listCards);
 
   @override
   Widget build(BuildContext context) {
     buildListCards(context, listCards);
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 88.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HomePageHeader(),
-            Expanded(
-              child: SportsCardGrid(),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0),
-              child: CardViewHeader(),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0, top: 4, left: 0),
-              child: HorizontalCardView(
-                listCards: listCards,
-                isMapView: false,
+    return listCards.isNotEmpty
+        ? SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 88.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HomePageHeader(),
+                  Expanded(
+                    child: SportsCardGrid(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24.0),
+                    child: CardViewHeader(),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(bottom: 8.0, top: 4, left: 0),
+                    child: HorizontalCardView(
+                      listCards: listCards,
+                      isMapView: false,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          )
+        : Container();
   }
 }
 

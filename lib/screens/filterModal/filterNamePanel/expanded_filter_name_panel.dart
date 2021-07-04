@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:expandable/expandable.dart';
-import 'package:instad_user/data/venue_filters.dart';
 import 'price_slider.dart';
 
 class ExpandedFilterTile extends StatelessWidget {

@@ -35,9 +35,14 @@ class _VenuesScreenState extends State<VenuesScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 24.0),
-                      child: Icon(
-                        Icons.arrow_back_ios_outlined,
-                        color: Colors.black,
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios_outlined,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                     Padding(

@@ -2,15 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instad_user/generalWidgets/tiles/map_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 import 'pageContent/venue_page_header.dart';
 import 'selectTimeGrid/select_time_grid.dart';
-import 'package:google_static_maps_controller/google_static_maps_controller.dart';
 import 'package:instad_user/models/timeslot.dart';
 import 'venueBottomSheet/venue_bottom_sheet.dart';
 import 'package:instad_user/data/booking_selections.dart';
 import 'pageContent/venue_info.dart';
 import 'pageContent/header_text.dart';
 import 'package:provider/provider.dart';
+import 'package:instad_user/functions/merge_date_time.dart';
+import 'selectDayGrid/select_day_grid.dart';
+import 'locationSnapshot/location_snapshot.dart';
 
 class VenueProfilePage extends StatefulWidget {
   static String id = "venue_page";
@@ -55,11 +58,6 @@ class VenueListStream extends StatelessWidget {
 }
 
 class _VenueProfilePageState extends State<VenueProfilePage> {
-  static List sports = [
-    "Football",
-    "Basketball",
-    "Padel Tennis",
-  ];
   List<Timeslot> timeslotsAM = [];
   List<Timeslot> timeslotsPM = [];
   String headerText = "AMENITIES";
@@ -70,6 +68,19 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
     "Drinks",
     "Prayer Area",
   ];
+  final items = List<DateTime>.generate(
+      7,
+      (i) => DateTime.utc(
+            DateTime.now().year,
+            DateTime.now().month,
+            DateTime.now().day,
+          ).add(Duration(days: i)));
+  DateTime selectedDay = DateTime.utc(
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day,
+  );
+
   bool isAm = true;
 
   bool isFavorite = true;
@@ -95,8 +106,12 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
         timeslots.sort();
         bookedslots.sort();
         for (Timestamp timeslot in timeslots) {
+          Timestamp selectedBooking = mergeDayTime(
+              timeslot,
+              Provider.of<BookingSelections>(context, listen: false)
+                  .getSelectedDay());
           bool _booked = false;
-          if (bookedslots.contains(timeslot)) {
+          if (bookedslots.contains(selectedBooking)) {
             _booked = true;
           }
           if (timeslot.toDate().isBefore(
@@ -114,6 +129,7 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
             body: CustomScrollView(
               slivers: [
                 SliverAppBar(
+                  elevation: 30,
                   toolbarHeight: 50,
                   expandedHeight: 227,
                   pinned: true,
@@ -138,6 +154,21 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                       ),
                       Padding(
                           padding: const EdgeInsets.only(top: 20.0),
+                          child: HeaderText(headerText: "SELECT DAY")),
+                      Container(
+                        height: 100,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(17.0),
+                          color: const Color(0xffffffff),
+                        ),
+                        child: SelectDayGrid(
+                          selectedDay: selectedDay,
+                          items: items,
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
                           child: HeaderText(headerText: "SELECT TIME")),
                       Padding(
                         padding: const EdgeInsets.only(top: 16.0),
@@ -145,6 +176,7 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                           isAm: true,
                           childrenList: timeslotsAM,
                           isAmenitiesGrid: false,
+                          dayselected: selectedDay,
                         ),
                       ),
                       Padding(
@@ -153,6 +185,7 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                           isAm: false,
                           childrenList: timeslotsPM,
                           isAmenitiesGrid: false,
+                          dayselected: selectedDay,
                         ),
                       ),
                       Padding(
@@ -173,59 +206,7 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 16.0, bottom: 0),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(17.0),
-                            child: ClipRect(
-                              child: Align(
-                                alignment: Alignment.center,
-                                heightFactor: 0.6,
-                                child: Stack(
-                                  children: [
-                                    Container(
-                                      height: 400,
-                                      child: StaticMap(
-                                        zoom: 14,
-                                        center: Location(
-                                            widget.location.latitude,
-                                            widget.location.longitude),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 400,
-                                        scaleToDevicePixelRatio: false,
-                                        googleApiKey:
-                                            "AIzaSyCT5og_KFj-pDTt3_8uK98X5xDK7L7OIXk",
-                                        markers: <Marker>[
-                                          /// Define marker style
-                                          Marker(
-                                            //icon: "https://goo.gl/1oTJ9Y",
-                                            color: Colors.green,
-                                            label: "H",
-                                            locations: [
-                                              /// Provide locations for markers of a defined style
-                                              Location(30.030986, 31.429570),
-                                            ],
-                                          ),
-
-                                          /// Define another marker style with custom icon
-                                        ],
-
-                                        /// Declare optional markers
-                                      ),
-                                    ),
-                                    Positioned(
-                                        top: 90,
-                                        right: 10,
-                                        child: MapButton(
-                                          miniView: true,
-                                        )),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        child: LocationSnapshot(widget: widget),
                       ),
                     ],
                   ),
@@ -243,7 +224,7 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                     bookings:
                         (Provider.of<BookingSelections>(context, listen: true)
                             .getBookings()),
-                    daySelected: DateTime.now(),
+                    daySelected: selectedDay,
                   )
                 : Container(
                     height: 0,

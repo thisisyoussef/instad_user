@@ -67,13 +67,13 @@ class MyApp extends StatelessWidget {
         routes: {
           InstadRoot.id: (context) => InstadRoot(),
           LoginPage.id: (context) => LoginPage(),
-          HomePage.id: (context) => HomePage(),
+          //HomePage.id: (context) => HomePage(),
           //FilterScreen.id: (context) => FilterScreen(),
           VenueProfilePage.id: (context) => VenueProfilePage(),
           BookedPage.id: (context) => BookedPage(),
           RegisterScreen.id: (context) => RegisterScreen(),
           //ListCard.id: (context) => ListCard(),
-          //VenuesScreen.id: (context) => VenuesScreen(listCards)
+          VenuesScreen.id: (context) => VenuesScreen()
         },
       ),
     );

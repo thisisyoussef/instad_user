@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:instad_user/data/venue_filters.dart';
+import 'package:instad_user/generalWidgets/string_to_icon_data.dart';
 import 'package:provider/provider.dart';
 import 'package:instad_user/screens/filterModal/filterNamePanel/expanded_filter_name_panel.dart';
 
@@ -36,19 +37,9 @@ class FilterNamePanel extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8.0),
               child: Row(
                 children: [
-                  Icon(filter == "Sport"
-                      ? Icons.sports_soccer
-                      : filter == "Areas"
-                          ? Icons.location_on_outlined
-                          : filter == "Time"
-                              ? Icons.access_time_outlined
-                              : filter == "Price"
-                                  ? Icons.attach_money_outlined
-                                  : filter == "Amenities"
-                                      ? Icons.local_drink_outlined
-                                      : filter == "Rating"
-                                          ? Icons.star_border
-                                          : null),
+                  Icon(StringToIconData(filter == "Sport"
+                      ? Provider.of<VenueFilters>(context).getSelectedSport()
+                      : filter)),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
@@ -74,7 +65,7 @@ class FilterNamePanel extends StatelessWidget {
                       filter == "Sport"
                           ? Provider.of<VenueFilters>(context)
                               .getSelectedSport()
-                          : filter == "Areas"
+                          : filter == "Location"
                               ? Provider.of<VenueFilters>(context)
                                   .getAreas("Selected")
                                   .toString()

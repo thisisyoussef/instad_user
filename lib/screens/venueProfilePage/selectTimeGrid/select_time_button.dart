@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:instad_user/data/booking_selections.dart';
+import 'package:instad_user/functions/merge_date_time.dart';
 import 'package:instad_user/models/timeslot.dart';
 import 'package:provider/provider.dart';
 
 class SelectTimeButton extends StatelessWidget {
-  SelectTimeButton({this.timeSlot, this.isAm});
+  SelectTimeButton({this.timeSlot, this.isAm, this.daySelected});
   final Timeslot timeSlot;
   final bool isAm;
+  final DateTime daySelected;
   @override
   Widget build(BuildContext context) {
+    Timestamp selectedBooking = mergeDayTime(timeSlot.time, daySelected);
     return InkWell(
       child: Row(
         children: [
@@ -23,7 +26,7 @@ class SelectTimeButton extends StatelessWidget {
                   child: Row(
                     children: [
                       Provider.of<BookingSelections>(context, listen: true)
-                              .isSelected(timeSlot.time)
+                              .isSelected(selectedBooking)
                           ? Icon(
                               Icons.check,
                               color: Colors.white,
@@ -45,7 +48,7 @@ class SelectTimeButton extends StatelessWidget {
                               .toString(),
                           style: Provider.of<BookingSelections>(context,
                                       listen: true)
-                                  .isSelected(timeSlot.time)
+                                  .isSelected(selectedBooking)
                               ? TextStyle(
                                   fontFamily: 'Helvetica Neue',
                                   fontSize: 20,
@@ -73,7 +76,7 @@ class SelectTimeButton extends StatelessWidget {
                           isAm ? 'AM' : 'PM',
                           style: Provider.of<BookingSelections>(context,
                                       listen: true)
-                                  .isSelected(timeSlot.time)
+                                  .isSelected(selectedBooking)
                               ? TextStyle(
                                   fontFamily: 'Helvetica Neue',
                                   fontSize: 14,
@@ -102,7 +105,7 @@ class SelectTimeButton extends StatelessWidget {
               ),
             ),
             decoration: !Provider.of<BookingSelections>(context, listen: true)
-                    .isSelected(timeSlot.time)
+                    .isSelected(selectedBooking)
                 ? BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     color: !timeSlot.booked
@@ -133,12 +136,12 @@ class SelectTimeButton extends StatelessWidget {
       onTap: () {
         if (!timeSlot.booked) {
           if (Provider.of<BookingSelections>(context, listen: false)
-              .isSelected(timeSlot.time)) {
+              .isSelected(selectedBooking)) {
             Provider.of<BookingSelections>(context, listen: false)
-                .removeFromBookings(timeSlot.time);
+                .removeFromBookings(selectedBooking);
           } else {
             Provider.of<BookingSelections>(context, listen: false)
-                .addToBookings(timeSlot.time);
+                .addToBookings(selectedBooking);
           }
         }
       },

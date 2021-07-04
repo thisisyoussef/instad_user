@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instad_user/models/booking.dart';
+import 'package:intl/intl.dart';
 import 'heading_title.dart';
 import 'package:instad_user/screens/instad_root.dart';
 
@@ -67,12 +68,8 @@ class BookingDetailsCard extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10.0, vertical: 10),
                             child: Text(
-                              "Booked on " +
-                                  booking.startTime.day.toString() +
-                                  " " +
-                                  booking.startTime.month.toString() +
-                                  " " +
-                                  booking.startTime.year.toString(),
+                              "Booked for " +
+                                  DateFormat.MMMd().format(booking.startTime),
                               style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 16,
@@ -128,11 +125,8 @@ class BookingDetailsCard extends StatelessWidget {
                                 ),
                                 child: HeadingTitle(
                                   heading: "Date",
-                                  title: booking.startTime.day.toString() +
-                                      " " +
-                                      booking.startTime.month.toString() +
-                                      " " +
-                                      booking.startTime.year.toString(),
+                                  title: DateFormat.MMMd()
+                                      .format(booking.startTime),
                                   fontScale: this.fontScale,
                                 ),
                               ),
@@ -151,10 +145,10 @@ class BookingDetailsCard extends StatelessWidget {
                               child: Container(
                                 child: HeadingTitle(
                                   heading: "Time",
-                                  title: booking.startTime.hour.toString() +
-                                      "-" +
-                                      booking.endTime.hour.toString() +
-                                      " PM",
+                                  title: DateFormat.jm()
+                                          .format(booking.startTime) +
+                                      " to " +
+                                      DateFormat.jm().format(booking.endTime),
                                   fontScale: this.fontScale,
                                 ),
                               ),

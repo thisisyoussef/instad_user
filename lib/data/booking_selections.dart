@@ -1,5 +1,7 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:instad_user/functions/merge_date_time.dart';
+import 'package:instad_user/models/booking.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'user_details.dart';
@@ -8,15 +10,30 @@ import 'package:firebase_auth/firebase_auth.dart';
 final _firestore = FirebaseFirestore.instance;
 
 class BookingSelections extends ChangeNotifier {
-  DateTime _selectedDay;
+  DateTime _selectedDay = DateTime.now();
   String latestBookingId;
+  Booking latestBooking;
   List<Timestamp> _selectedBookings = [];
   bool isSelected(Timestamp selectedBooking) {
+    //selectedBooking = mergeDayTime(selectedBooking, _selectedDay);
     return _selectedBookings.contains(selectedBooking);
   }
 
-  String getLatestBooking() {
+  void setSelectedDay(DateTime selectedDay) {
+    _selectedDay = selectedDay;
+    notifyListeners();
+  }
+
+  DateTime getSelectedDay() {
+    return _selectedDay;
+  }
+
+  String getLatestBookingId() {
     return latestBookingId;
+  }
+
+  Booking getLatestBooking() {
+    return latestBooking;
   }
 
   void clearSelections() {
@@ -25,12 +42,14 @@ class BookingSelections extends ChangeNotifier {
   }
 
   void addToBookings(Timestamp selectedBooking) {
+    //selectedBooking = mergeDayTime(selectedBooking, _selectedDay);
     _selectedBookings.add(selectedBooking);
     _selectedBookings.sort();
     notifyListeners();
   }
 
   void removeFromBookings(Timestamp selectedBooking) {
+    //selectedBooking = mergeDayTime(selectedBooking, _selectedDay);
     _selectedBookings.remove(selectedBooking);
     notifyListeners();
   }
@@ -83,6 +102,17 @@ class BookingSelections extends ChangeNotifier {
         'location': venueId,
         'price': _selectedBookings.length * 200,
       }).then((value) => latestBookingId = value.id);
+      latestBooking = Booking(
+          phoneNumber: UserDetails().userNumber,
+          name: UserDetails().userName,
+          startTime: DateTime.fromMicrosecondsSinceEpoch(
+              _selectedBookings[0].microsecondsSinceEpoch),
+          isAllDay: false,
+          price: _selectedBookings.length * 200,
+          endTime: DateTime.fromMicrosecondsSinceEpoch(
+              (_selectedBookings[_selectedBookings.length - 1])
+                      .microsecondsSinceEpoch +
+                  3600000000));
     }
   }
 }

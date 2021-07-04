@@ -8,26 +8,10 @@ import 'package:provider/provider.dart';
 
 class BookedPage extends StatelessWidget {
   static String id = "booked_page";
-
-  const BookedPage({Key key}) : super(key: key);
+  final Booking booking;
+  const BookedPage({Key key, this.booking}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Booking booking;
-    final _firestore = FirebaseFirestore.instance;
-    final field = _firestore
-        .collection("users")
-        .doc(FirebaseAuth.instance.currentUser.uid)
-        .collection("bookings")
-        .doc(Provider.of<BookingSelections>(context, listen: true)
-            .getLatestBooking())
-        .get()
-        .then((querySnapshot) {
-      booking = Booking(
-        name: querySnapshot.data()['bookingName'],
-        startTime: querySnapshot.data()['startTime'],
-        endTime: querySnapshot.data()['endTime'],
-      );
-    });
     return Scaffold(
         backgroundColor: Colors.white.withOpacity(0.9),
         body: Center(

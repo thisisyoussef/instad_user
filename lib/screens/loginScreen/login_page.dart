@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:instad_user/screens/register_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import '../../data/user_details.dart';
 import '../instad_root.dart';
+import '../register_screen.dart';
 import 'user_input_field.dart';
 import '../../generalWidgets//wide_rounded_button.dart';
 import 'sign_in_with_button.dart';
@@ -19,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   bool showSpinner = false;
   String email;
   String password;
+  String errorMessage = " ";
   Image googleIcon = Image.asset(
     'assets/images/googleIcon.png',
     height: 32,
@@ -51,6 +52,22 @@ class _LoginPageState extends State<LoginPage> {
                     width: MediaQuery.of(context).size.height,
                     child: Image.asset('assets/images/instadLogo.png',
                         width: 102, height: 34),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: newheight * 0.001),
+                  child: Visibility(
+                    visible: errorMessage != " ",
+                    child: Text(
+                      errorMessage,
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.redAccent,
+                        letterSpacing: 0.96,
+                      ),
+                    ),
                   ),
                 ),
                 Padding(
@@ -89,11 +106,12 @@ class _LoginPageState extends State<LoginPage> {
                         UserDetails().loggedInUserID = loggedInUser.user.uid;
                         Navigator.pushNamed(context, InstadRoot.id);
                       }
-                    } catch (e) {
+                    } on FirebaseAuthException catch (e) {
+                      print(e.message);
                       setState(() {
                         showSpinner = false;
+                        errorMessage = e.message;
                       });
-                      print(e);
                     }
                   },
                 ),

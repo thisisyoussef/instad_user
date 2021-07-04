@@ -4,15 +4,17 @@ import 'select_time_button.dart';
 import 'package:instad_user/generalWidgets/tiles/amenity_tile.dart';
 
 class SelectTimeGrid extends StatelessWidget {
-  const SelectTimeGrid({
-    Key key,
-    @required this.isAm,
-    @required this.childrenList,
-    @required this.isAmenitiesGrid,
-  }) : super(key: key);
+  const SelectTimeGrid(
+      {Key key,
+      @required this.isAm,
+      @required this.childrenList,
+      @required this.isAmenitiesGrid,
+      @required this.dayselected})
+      : super(key: key);
   final bool isAm;
   final List childrenList;
   final bool isAmenitiesGrid;
+  final DateTime dayselected;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,6 +49,7 @@ class SelectTimeGrid extends StatelessWidget {
                             : SelectTimeButton(
                                 timeSlot: childrenList[i],
                                 isAm: isAm,
+                                daySelected: dayselected,
                               ),
                     ],
                   )
@@ -63,6 +66,7 @@ class SelectTimeGrid extends StatelessWidget {
                                       child: SelectTimeButton(
                                         timeSlot: childrenList[j],
                                         isAm: isAm,
+                                        daySelected: dayselected,
                                       ),
                                     )
                                   : Container(
