@@ -3,8 +3,8 @@ import 'package:instad_user/generalWidgets/string_to_icon_data.dart';
 
 class AmenityTile extends StatelessWidget {
   //const AmenityTile({Key key, this.amentiy}) : super(key: key);
-  const AmenityTile(this.amentiy);
-  final String amentiy;
+  const AmenityTile(this.amenity);
+  final String amenity;
   @override
   Widget build(BuildContext context) {
     return UnconstrainedBox(
@@ -22,13 +22,13 @@ class AmenityTile extends StatelessWidget {
               child: Row(
                 children: [
                   Icon(
-                    StringToIconData(amentiy),
+                    StringToIconData(amenity),
                     color: const Color(0xff2b8116),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 7.0),
                     child: Text(
-                      amentiy,
+                      amenity,
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: 18,

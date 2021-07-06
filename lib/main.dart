@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instad_user/data/instad_data.dart';
 import 'package:instad_user/models/venue_list.dart';
-import 'file:///C:/Users/youss/AndroidStudioProjects/instad_user/lib/screens/bookedPage/booked_page.dart';
-import 'package:instad_user/screens/homeScreen/home_page.dart';
+import 'screens/bookedPage/booked_page.dart';
 import 'package:instad_user/screens/loginScreen/login_page.dart';
 import 'package:instad_user/screens/register_screen.dart';
 import 'package:instad_user/services/venue_details.dart';
@@ -10,13 +9,10 @@ import 'package:instad_user/data/venue_filters.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:instad_user/screens/venueProfilePage/venue_profile_page.dart';
-import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';
 import 'package:instad_user/screens/venuesScreen/venues_screen.dart';
 import 'package:instad_user/services/geolocator_screen.dart';
 import 'package:provider/provider.dart';
 import 'screens/instad_root.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:location/location.dart';
 import 'selected_location.dart';
 import 'package:instad_user/data/booking_selections.dart';
 
