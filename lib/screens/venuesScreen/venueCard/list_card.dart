@@ -3,7 +3,7 @@ import 'package:instad_user/screens/venueProfilePage/venue_profile_page.dart';
 import 'package:instad_user/services/venue_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../generalWidgets/tiles/map_button.dart';
+import 'package:instad_user/generalWidgets/tiles/map_button.dart';
 import 'venueImageCard/venue_image_card.dart';
 import 'dropdown_button.dart';
 import 'package:instad_user/generalWidgets/image_builder.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class WideRoundedButton extends StatelessWidget {
   WideRoundedButton(
       {this.color, this.title, this.onPressed, this.textColor, this.isEnabled});
@@ -17,15 +18,19 @@ class WideRoundedButton extends StatelessWidget {
             height: 48,
             width: 327,
             decoration: BoxDecoration(
-              color: !isEnabled ? Color(0xFFC7C7C7) : null,
+              color: isEnabled
+                  ? color != null
+                      ? color
+                      : Color(0xFFC7C7C7)
+                  : null,
               borderRadius: BorderRadius.all(
                 Radius.circular(8.0),
               ),
-              gradient: isEnabled
+              gradient: isEnabled && color == null
                   ? LinearGradient(
-                  colors: [Color(0xFF2CA387), Color(0xFF2B8116)],
-                  begin: Alignment.bottomRight,
-                  end: Alignment.topLeft)
+                      colors: [Color(0xFF2CA387), Color(0xFF2B8116)],
+                      begin: Alignment.bottomRight,
+                      end: Alignment.topLeft)
                   : null,
             ),
             child: MaterialButton(

@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instad_user/models/booking.dart';
-import 'package:instad_user/models/timeslot.dart';
 import 'package:instad_user/screens/bookedPage/booking_details_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:instad_user/models/booking.dart';
 
 final _firestore = FirebaseFirestore.instance;
 

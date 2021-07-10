@@ -4,7 +4,7 @@ import 'package:instad_user/functions/build_listCards.dart';
 import 'package:instad_user/screens/homeScreen/home_page.dart';
 import 'package:instad_user/screens/map_screen.dart';
 import 'package:instad_user/screens/profile_page.dart';
-import 'package:instad_user/screens/venue_request_page.dart';
+import 'package:instad_user/screens/venueRequestPage/venue_request_page.dart';
 import 'package:instad_user/screens/venuesScreen/venues_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';

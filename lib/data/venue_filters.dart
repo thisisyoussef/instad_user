@@ -31,6 +31,19 @@ class VenueFilters extends ChangeNotifier {
   int _unappliedMaxPrice = 400;
   List<String> _unappliedAmenities;
   double _unappliedRating = 6.0;
+  void reset() {
+    _areas = [];
+    _startDate = null;
+    _endDate = null;
+    _sport = "";
+    _selectedSport = "";
+    _unappliedSport = "";
+    _distanceFromUser = null;
+    _maxPrice = null;
+    _amenities = null;
+    _rating = null;
+    notifyListeners();
+  }
 
   void applyFilters() {
     _areas = List.from(_selectedAreas);
@@ -125,8 +138,26 @@ class VenueFilters extends ChangeNotifier {
     return _sport;
   }
 
-  DateTime getDate() {
-    return _startDate;
+  DateTime getDate(String stage) {
+    if (stage == "Unapplied") {
+      return _unappliedStartDate;
+    } else if (stage == "Selected") {
+      return _selectedStartDate;
+    } else if (stage == "Applied") {
+      return _startDate;
+    }
+    return null;
+  }
+
+  void setDate(String stage, DateTime newDate) {
+    if (stage == "Unapplied") {
+      _unappliedStartDate = newDate;
+    } else if (stage == "Selected") {
+      _selectedStartDate = newDate;
+    } else if (stage == "Applied") {
+      _startDate = newDate;
+    }
+    notifyListeners();
   }
 
   List<String> getAmenities() {

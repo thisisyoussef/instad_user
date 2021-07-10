@@ -140,6 +140,9 @@ class SelectTimeButton extends StatelessWidget {
             Provider.of<BookingSelections>(context, listen: false)
                 .removeFromBookings(selectedBooking);
           } else {
+            print(DateTime.fromMicrosecondsSinceEpoch(
+                    selectedBooking.microsecondsSinceEpoch)
+                .toString());
             Provider.of<BookingSelections>(context, listen: false)
                 .addToBookings(selectedBooking);
           }

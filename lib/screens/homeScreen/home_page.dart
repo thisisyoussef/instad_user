@@ -22,7 +22,9 @@ class HomePage extends StatelessWidget {
                 children: [
                   HomePageHeader(),
                   Expanded(
-                    child: SportsCardGrid(),
+                    child: SportsCardGrid(
+                      isFilterVersion: false,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 24.0),

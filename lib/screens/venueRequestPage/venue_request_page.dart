@@ -1,14 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instad_user/data/venue_filters.dart';
 import 'package:instad_user/generalWidgets/string_to_icon_data.dart';
 import 'package:instad_user/generalWidgets/wide_rounded_button.dart';
 import 'package:instad_user/screens/filterModal/filterNamePanel/price_slider.dart';
-import 'package:instad_user/screens/queryScreens/sports_query.dart';
-import 'package:instad_user/screens/venueProfilePage/pageContent/header_text.dart';
+import 'package:instad_user/screens/venueRequestPage/queryScreens/date_query.dart';
+import 'package:instad_user/screens/venueRequestPage/queryScreens/time_query.dart';
+import 'package:intl/intl.dart';
+import 'queryScreens/areas_query.dart';
+import 'queryScreens/sports_query.dart';
 import 'package:instad_user/screens/venuesScreen/venues_screen.dart';
 import 'package:provider/provider.dart';
-
-import 'filterModal/filter_screen.dart';
 
 class VenueRequestPage extends StatelessWidget {
   @override
@@ -17,20 +19,23 @@ class VenueRequestPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           actions: [
-            InkWell(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 18.0, right: 16),
-                  child: Text(
-                    'Reset',
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 18,
-                      color: const Color(0xffac4444),
-                    ),
-                    textAlign: TextAlign.right,
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: TextButton(
+                onPressed: () {
+                  Provider.of<VenueFilters>(context, listen: false).reset();
+                },
+                child: Text(
+                  'Reset',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 18,
+                    color: const Color(0xffac4444),
                   ),
+                  textAlign: TextAlign.right,
                 ),
-                onTap: () {}),
+              ),
+            ),
           ],
           elevation: 0,
           backgroundColor: Colors.white,
@@ -110,6 +115,8 @@ class VenueRequestPage extends StatelessWidget {
                             null,
                     title: "FIND VENUES",
                     onPressed: () {
+                      Provider.of<VenueFilters>(context, listen: false)
+                          .applyFilters();
                       Navigator.pushNamed(context, VenuesScreen.id);
                     },
                   ),
@@ -169,12 +176,15 @@ class QueryBox extends StatelessWidget {
                                 isScrollControlled: true,
                                 builder: (context) => SingleChildScrollView(
                                   child: Container(
-                                    padding: EdgeInsets.only(
-                                        bottom: MediaQuery.of(context)
-                                            .viewInsets
-                                            .bottom),
-                                    child: SportsQuery(),
-                                  ),
+                                      padding: EdgeInsets.only(
+                                          bottom: MediaQuery.of(context)
+                                              .viewInsets
+                                              .bottom),
+                                      child: filter == "Sport"
+                                          ? SportsQuery()
+                                          : filter == "Area"
+                                              ? AreasQuery()
+                                              : Container()),
                                 ),
                               );
                             },
@@ -183,80 +193,62 @@ class QueryBox extends StatelessWidget {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 5.0),
-                                child: filter == "Date & Time"
-                                    ? Row(
-                                        children: [
-                                          Icon(
-                                            StringToIconData("Date"),
-                                            color: Color(0xFFABCDA2),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 8.0),
-                                            child: Text(
-                                              "Pick a date",
-                                              style: TextStyle(
-                                                fontFamily: 'Montserrat',
-                                                fontSize: 16,
-                                                color: const Color(0xff2e2e2e),
-                                              ),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    : Row(
-                                        children: [
-                                          Icon(
-                                            StringToIconData(filter == "Sport"
-                                                ? Provider.of<VenueFilters>(
-                                                        context)
-                                                    .getSelectedSport()
-                                                : filter == "Area"
-                                                    ? "Location"
-                                                    : filter == "Date & Time"
-                                                        ? Provider.of<
-                                                                    VenueFilters>(
-                                                                context)
-                                                            .getDate()
-                                                            .toString()
-                                                        : "EMPTY"),
-                                            color: Color(0xFFABCDA2),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 8.0),
-                                            child: Text(
-                                              filter == "Sport"
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      StringToIconData(filter == "Sport"
+                                          ? Provider.of<VenueFilters>(context,
+                                                  listen: true)
+                                              .getSelectedSport()
+                                          : filter == "Area"
+                                              ? "Location"
+                                              : filter == "Date & Time"
                                                   ? Provider.of<VenueFilters>(
-                                                          context)
-                                                      .getSelectedSport()
-                                                  : filter == "Area"
-                                                      ? Provider.of<VenueFilters>(
-                                                                  context)
-                                                              .getAreas(
-                                                                  "Selected")
-                                                              .isNotEmpty
-                                                          ? Provider.of<
-                                                                      VenueFilters>(
-                                                                  context)
-                                                              .getAreas(
-                                                                  "Selected")
-                                                          : "Select Area"
-                                                              .toString()
-                                                      : filter == "Date & Time"
-                                                          ? "Pick a date"
-                                                          : "EMPTY",
-                                              style: TextStyle(
-                                                fontFamily: 'Montserrat',
-                                                fontSize: 16,
-                                                color: const Color(0xff2e2e2e),
-                                              ),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-                                        ],
+                                                          context,
+                                                          listen: true)
+                                                      .getDate("Unapplied")
+                                                      .toString()
+                                                  : "EMPTY"),
+                                      color: Color(0xFFABCDA2),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        filter == "Sport"
+                                            ? Provider.of<VenueFilters>(context,
+                                                        listen: true)
+                                                    .getSelectedSport()
+                                                    .isNotEmpty
+                                                ? Provider.of<VenueFilters>(
+                                                        context,
+                                                        listen: true)
+                                                    .getSelectedSport()
+                                                : "Pick a Sport"
+                                            : filter == "Area"
+                                                ? Provider.of<VenueFilters>(
+                                                            context)
+                                                        .getAreas("Selected")
+                                                        .isNotEmpty
+                                                    ? Provider.of<VenueFilters>(
+                                                            context)
+                                                        .getAreas("Selected")
+                                                    : "Select Area".toString()
+                                                : filter == "Date & Time"
+                                                    ? Provider.of<VenueFilters>(
+                                                            context,
+                                                            listen: true)
+                                                        .getDate("Selected")
+                                                    : "EMPTY",
+                                        style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 16,
+                                          color: const Color(0xff2e2e2e),
+                                        ),
+                                        textAlign: TextAlign.left,
                                       ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -272,28 +264,37 @@ class QueryBox extends StatelessWidget {
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 5.0),
                                       child: filter == "Date & Time"
-                                          ? Row(
-                                              children: [
-                                                Icon(
-                                                  StringToIconData("Time"),
-                                                  color: Color(0xFFABCDA2),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8.0),
-                                                  child: Text(
-                                                    "Select Time",
-                                                    style: TextStyle(
-                                                      fontFamily: 'Montserrat',
-                                                      fontSize: 16,
-                                                      color: const Color(
-                                                          0xff2e2e2e),
-                                                    ),
-                                                    textAlign: TextAlign.left,
+                                          ? InkResponse(
+                                              onTap: () async {
+                                                await showDialog(
+                                                    context: context,
+                                                    builder: (context) =>
+                                                        TimeQuery());
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  Icon(
+                                                    StringToIconData("Time"),
+                                                    color: Color(0xFFABCDA2),
                                                   ),
-                                                ),
-                                              ],
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 8.0),
+                                                    child: Text(
+                                                      "Select Time",
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        fontSize: 16,
+                                                        color: const Color(
+                                                            0xff2e2e2e),
+                                                      ),
+                                                      textAlign: TextAlign.left,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             )
                                           : Container(),
                                     ),
@@ -332,7 +333,13 @@ class QueryBox extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(left: 8.0),
                                           child: Text(
-                                            "Pick a date",
+                                            DateFormat.MMMd()
+                                                .format(
+                                                    Provider.of<VenueFilters>(
+                                                            context,
+                                                            listen: true)
+                                                        .getDate("Selected"))
+                                                .toString(),
                                             style: TextStyle(
                                               fontFamily: 'Montserrat',
                                               fontSize: 16,
@@ -345,6 +352,11 @@ class QueryBox extends StatelessWidget {
                                     ),
                                   )),
                             ),
+                            onTap: () async {
+                              await showDialog(
+                                  context: context,
+                                  builder: (context) => DateQuery());
+                            },
                           ),
                         ),
                       ),
@@ -357,14 +369,19 @@ class QueryBox extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 8.0, left: 5),
-                          child: InkWell(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 5.0),
-                                child: filter == "Date & Time"
-                                    ? Row(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 5.0),
+                              child: filter == "Date & Time"
+                                  ? InkResponse(
+                                      onTap: () async {
+                                        await showDialog(
+                                            context: context,
+                                            builder: (context) => TimeQuery());
+                                      },
+                                      child: Row(
                                         children: [
                                           Icon(
                                             StringToIconData("Time"),
@@ -384,9 +401,9 @@ class QueryBox extends StatelessWidget {
                                             ),
                                           ),
                                         ],
-                                      )
-                                    : Container(),
-                              ),
+                                      ),
+                                    )
+                                  : Container(),
                             ),
                           ),
                         ),

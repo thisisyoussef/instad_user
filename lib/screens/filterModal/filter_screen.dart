@@ -3,7 +3,7 @@ import 'package:instad_user/data/venue_filters.dart';
 import 'package:instad_user/generalWidgets//wide_rounded_button.dart';
 import 'package:provider/provider.dart';
 import 'package:instad_user/screens/filterModal/filterNamePanel/filter_name_panel.dart';
-import 'file:///C:/Users/youss/AndroidStudioProjects/instad_user/lib/screens/filterModal/filter_title_bar.dart';
+import 'package:instad_user/screens/filterModal/filter_title_bar.dart';
 import 'package:instad_user/generalWidgets//size_provider_widget.dart';
 import 'package:instad_user/data/instad_data.dart';
 import 'package:instad_user/screens/filterModal/filter_tile.dart';
@@ -87,7 +87,9 @@ class _FilterScreenState extends State<FilterScreen> {
                             ),
                             FilterNamePanel(
                                 filter: "Time",
-                                sport: venueFilters.getDate().toString()),
+                                sport: venueFilters
+                                    .getDate("Selected")
+                                    .toString()),
                             FilterNamePanel(
                                 filter: "Price",
                                 sport: venueFilters

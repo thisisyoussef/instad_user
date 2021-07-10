@@ -68,18 +68,6 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
     "Drinks",
     "Prayer Area",
   ];
-  final items = List<DateTime>.generate(
-      7,
-      (i) => DateTime.utc(
-            DateTime.now().year,
-            DateTime.now().month,
-            DateTime.now().day,
-          ).add(Duration(days: i)));
-  DateTime selectedDay = DateTime.utc(
-    DateTime.now().year,
-    DateTime.now().month,
-    DateTime.now().day,
-  );
 
   bool isAm = true;
 
@@ -163,8 +151,9 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                           color: const Color(0xffffffff),
                         ),
                         child: SelectDayGrid(
-                          selectedDay: selectedDay,
-                          items: items,
+                          selectedDay: Provider.of<BookingSelections>(context,
+                                  listen: true)
+                              .getSelectedDay(),
                         ),
                       ),
                       Padding(
@@ -176,7 +165,9 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                           isAm: true,
                           childrenList: timeslotsAM,
                           isAmenitiesGrid: false,
-                          dayselected: selectedDay,
+                          dayselected: Provider.of<BookingSelections>(context,
+                                  listen: false)
+                              .getSelectedDay(),
                         ),
                       ),
                       Padding(
@@ -185,7 +176,9 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                           isAm: false,
                           childrenList: timeslotsPM,
                           isAmenitiesGrid: false,
-                          dayselected: selectedDay,
+                          dayselected: Provider.of<BookingSelections>(context,
+                                  listen: false)
+                              .getSelectedDay(),
                         ),
                       ),
                       Padding(
@@ -224,7 +217,9 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                     bookings:
                         (Provider.of<BookingSelections>(context, listen: true)
                             .getBookings()),
-                    daySelected: selectedDay,
+                    daySelected:
+                        Provider.of<BookingSelections>(context, listen: false)
+                            .getSelectedDay(),
                   )
                 : Container(
                     height: 0,

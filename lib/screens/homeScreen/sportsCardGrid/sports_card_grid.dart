@@ -5,8 +5,9 @@ import 'package:instad_user/data/instad_data.dart';
 class SportsCardGrid extends StatelessWidget {
   const SportsCardGrid({
     Key key,
+    this.isFilterVersion,
   }) : super(key: key);
-
+  final bool isFilterVersion;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,6 +22,7 @@ class SportsCardGrid extends StatelessWidget {
           for (String sport in InstadData.sports)
             SportsCard(
               sport: sport,
+              isFilterVersion: isFilterVersion,
             ),
         ],
       ),

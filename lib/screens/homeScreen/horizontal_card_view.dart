@@ -4,7 +4,7 @@ import 'package:instad_user/generalWidgets/image_builder.dart';
 import 'package:instad_user/screens/venueProfilePage/venue_profile_page.dart';
 import 'package:instad_user/services/firebasestorage.dart';
 import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';
-import 'file:///C:/Users/youss/AndroidStudioProjects/instad_user/lib/screens/venuesScreen/venueCard/venueImageCard/venue_image_card.dart';
+import 'package:instad_user/screens/venuesScreen/venueCard/venueImageCard/venue_image_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HorizontalCardView extends StatefulWidget {

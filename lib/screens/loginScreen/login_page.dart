@@ -103,6 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                         showSpinner = false;
                       });
                       if (loggedInUser != null) {
+                        print("Authenticated");
                         UserDetails().loggedInUserID = loggedInUser.user.uid;
                         Navigator.pushNamed(context, InstadRoot.id);
                       }

@@ -17,7 +17,6 @@ class FilterTitleBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String sport = "Football";
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -28,7 +27,7 @@ class FilterTitleBar extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 14.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
