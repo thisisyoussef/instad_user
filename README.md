@@ -1,16 +1,12 @@
 # instad_user
 
-A new Flutter application.
+Instad is a mobile app platform and marketplace solution that at its core adds transparency to the sports venue market and streamlines the booking process. 
+Users will be able to find and access information for pitches anywhere in the country and book them. 
 
-## Getting Started
+Additionally, the social features of the platform allows users to simplify the process of finding players for their reservations and granting them all the information they may need to make their booking decision. This includes, times available, locations, sports available, ratings and more accompanied with the ability to filter by each.
 
-This project is a starting point for a Flutter application.
+The app contains a map connected to a firebase database displaying all nearby venues and their information.
 
-A few resources to get you started if this is your first Flutter project:
+Sports venues in Egypt will have the information needed to adjust their prices, be more accessible for their target customers, be able to cost-effectively advertise their facilities, and eliminate labor costs and confusion associated with reservation logistics.
+Instad aims to connect players to venues and venues to players at the tap of a button.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
