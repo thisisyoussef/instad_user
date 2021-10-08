@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_static_maps_controller/google_static_maps_controller.dart';
+import 'package:instad_user/models/venue_list.dart';
 import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';
 import 'sportsCardGrid/sports_card_grid.dart';
 import 'horizontal_card_view.dart';
@@ -7,42 +8,38 @@ import 'package:instad_user/functions/build_listCards.dart';
 
 class HomePage extends StatelessWidget {
   static String id = "home_page";
-  final List<ListCard> listCards;
-  HomePage(this.listCards);
 
   @override
   Widget build(BuildContext context) {
-    buildListCards(context, listCards);
-    return listCards.isNotEmpty
-        ? SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 88.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HomePageHeader(),
-                  Expanded(
-                    child: SportsCardGrid(
-                      isFilterVersion: false,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 24.0),
-                    child: CardViewHeader(),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 8.0, top: 4, left: 0),
-                    child: HorizontalCardView(
-                      listCards: listCards,
-                      isMapView: false,
-                    ),
-                  ),
-                ],
+    return SafeArea(
+      child: Material(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 88.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HomePageHeader(),
+              Expanded(
+                child: SportsCardGrid(
+                  isFilterVersion: false,
+                ),
               ),
-            ),
-          )
-        : Container();
+              Padding(
+                padding: const EdgeInsets.only(left: 24.0),
+                child: CardViewHeader(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0, top: 4, left: 0),
+                child: HorizontalCardView(
+                  listCards: listCards,
+                  isMapView: false,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -66,7 +63,7 @@ class HomePageHeader extends StatelessWidget {
                   Text(
                     'Book',
                     style: TextStyle(
-                      fontFamily: 'Montserrat',
+                      fontFamily: 'Hussar',
                       fontSize: 34,
                       color: const Color(0xff2e2e2e),
                       fontWeight: FontWeight.w600,
@@ -76,7 +73,7 @@ class HomePageHeader extends StatelessWidget {
                   Text(
                     ' Venue',
                     style: TextStyle(
-                      fontFamily: 'Montserrat',
+                      fontFamily: 'Hussar',
                       fontSize: 34,
                       color: const Color(0xff2b8116),
                       fontWeight: FontWeight.w600,
@@ -101,7 +98,7 @@ class HomePageHeader extends StatelessWidget {
           child: Text(
             'By Sport',
             style: TextStyle(
-              fontFamily: 'Chakra Petch',
+              fontFamily: 'Hussar',
               fontSize: 17,
               color: const Color(0xff2e2e2e),
               fontWeight: FontWeight.w700,
@@ -127,7 +124,7 @@ class CardViewHeader extends StatelessWidget {
         Text(
           'Nearby',
           style: TextStyle(
-            fontFamily: 'Chakra Petch',
+            fontFamily: 'Hussar',
             fontSize: 18,
             color: const Color(0xff2e2e2e),
             fontWeight: FontWeight.w700,
@@ -143,7 +140,7 @@ class CardViewHeader extends StatelessWidget {
                 child: Text(
                   'View All',
                   style: TextStyle(
-                    fontFamily: 'Montserrat',
+                    fontFamily: 'Hussar',
                     fontSize: 14,
                     color: const Color(0xff2b8116),
                     letterSpacing: 0.96,

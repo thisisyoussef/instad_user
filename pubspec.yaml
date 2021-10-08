@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -23,8 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  adobe_xd: ^2.0.0+1
-  flutter_launcher_icons: ^0.9.0
   modal_progress_hud: ^0.1.3
   google_maps_flutter: ^0.5.27
   location: ^3.0.2
@@ -41,6 +39,10 @@ dependencies:
   google_static_maps_controller: ^0.5.0
   dio: ^3.0.0
   flutter_polyline_points: ^0.2.3
+  intl_phone_field: ^2.1.0
+  email_validator: '^1.0.6'
+  pin_code_fields: ^7.3.0
+
 
 
 
@@ -68,10 +70,19 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  fonts:
+    - family: Hussar
+      fonts:
+        - asset: assets/fonts/HussarBold.otf
+        - asset: assets/fonts/HussarBdLeftOutline.otf
+        - asset: assets/fonts/HussarBoldItalic.otf
+        - asset: assets/fonts/HussarBoldItalicOutline.otf
+        - asset: assets/fonts/HussarBoldLeftalic.otf
+        - asset: assets/fonts/HussarBoldOutline.otf
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/3x/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instad_user/models/booking.dart';
+import 'package:instad_user/screens/venueRequestPage/venue_request_page.dart';
 import 'package:intl/intl.dart';
 import 'heading_title.dart';
 import 'package:instad_user/screens/instad_root.dart';
@@ -38,7 +39,7 @@ class BookingDetailsCard extends StatelessWidget {
                   child: Text(
                     'Booking Successful',
                     style: TextStyle(
-                      fontFamily: 'Chakra Petch',
+                      fontFamily: 'Hussar',
                       fontSize: 30 * fontScale,
                       color: const Color(0xff2b8116),
                       fontWeight: FontWeight.w700,
@@ -71,7 +72,7 @@ class BookingDetailsCard extends StatelessWidget {
                               "Booked for " +
                                   DateFormat.MMMd().format(booking.startTime),
                               style: TextStyle(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Hussar',
                                 fontSize: 16,
                                 color: const Color(0xff2e2e2e),
                                 letterSpacing: 0.96,
@@ -187,7 +188,7 @@ class BookingDetailsCard extends StatelessWidget {
                                   child: Text(
                                     'Book again',
                                     style: TextStyle(
-                                      fontFamily: 'Montserrat',
+                                      fontFamily: 'Hussar',
                                       fontSize: 18,
                                       color: const Color(0xff2b8116),
                                       letterSpacing: 1.92,
@@ -217,12 +218,13 @@ class BookingDetailsCard extends StatelessWidget {
           !isListview
               ? TextButton(
                   onPressed: () {
-                    Navigator.popAndPushNamed(context, InstadRoot.id);
+                    Navigator.popUntil(
+                        context, ModalRoute.withName(VenueRequestPage.id));
                   },
                   child: Text(
                     'Close',
                     style: TextStyle(
-                      fontFamily: 'Montserrat',
+                      fontFamily: 'Hussar',
                       fontSize: 20 * fontScale,
                       color: const Color(0xff2b8116),
                       letterSpacing: 2.24,

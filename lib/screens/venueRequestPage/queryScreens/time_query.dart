@@ -4,42 +4,13 @@ import 'package:instad_user/data/venue_filters.dart';
 import 'package:instad_user/generalWidgets/wide_rounded_button.dart';
 import 'package:instad_user/screens/venueProfilePage/selectTimeGrid/select_time_grid.dart';
 import 'package:instad_user/screens/venueRequestPage/queryScreens/time_slider.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:instad_user/models/timeslot.dart';
 
 class TimeQuery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Timeslot> timeslotsAM = List<Timeslot>.generate(
-      12,
-      (i) => Timeslot(
-          time: Timestamp.fromDate(
-            DateTime.utc(
-              DateTime.now().year,
-              DateTime.now().month,
-              DateTime.now().day,
-              DateTime(1, 1, 24).hour,
-            ).add(
-              Duration(hours: i),
-            ),
-          ),
-          booked: false),
-    );
-    List<Timeslot> timeslotsPM = List<Timeslot>.generate(
-      12,
-      (i) => Timeslot(
-          time: Timestamp.fromDate(
-            DateTime.utc(
-              DateTime.now().year,
-              DateTime.now().month,
-              DateTime.now().day,
-              DateTime(1, 1, 12).hour,
-            ).add(
-              Duration(hours: i),
-            ),
-          ),
-          booked: false),
-    );
     return Dialog(
       insetPadding: EdgeInsets.symmetric(horizontal: 13),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
@@ -54,9 +25,9 @@ class TimeQuery extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  "Pick the day you'd like to play",
+                  "When would you like to play?",
                   style: TextStyle(
-                    fontFamily: 'Montserrat',
+                    fontFamily: 'Hussar',
                     fontSize: 20,
                     color: const Color(0xff2e2e2e),
                     fontWeight: FontWeight.w600,
@@ -64,17 +35,30 @@ class TimeQuery extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
               ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: TimeSlider(),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 12.0, left: 10),
+                  child: Text(
+                    DateFormat.jm().format(
+                            Provider.of<VenueFilters>(context, listen: true)
+                                .getStartTime("Unapplied")) +
+                        " - " +
+                        DateFormat.jm().format(
+                            Provider.of<VenueFilters>(context, listen: true)
+                                .getEndTime("Unapplied")),
+                    style: TextStyle(
+                      fontFamily: 'Hussar',
+                      fontSize: 18,
+                      color: const Color(0xff2b8116),
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: TimeSlider(),
-                  ),
-                ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 50.0),
+                child: TimeSlider(),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
@@ -98,11 +82,17 @@ class TimeQuery extends StatelessWidget {
                       child: WideRoundedButton(
                         onPressed: () {
                           Provider.of<VenueFilters>(context, listen: false)
-                              .setDate(
+                              .setStartTime(
                                   "Selected",
                                   Provider.of<VenueFilters>(context,
                                           listen: false)
-                                      .getDate("Unapplied"));
+                                      .getStartTime("Unapplied"));
+                          Provider.of<VenueFilters>(context, listen: false)
+                              .setEndTime(
+                                  "Selected",
+                                  Provider.of<VenueFilters>(context,
+                                          listen: false)
+                                      .getEndTime("Unapplied"));
                           Navigator.pop(context);
                         },
                         color: Color(0xFF2B8116),

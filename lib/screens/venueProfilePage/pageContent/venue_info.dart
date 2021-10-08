@@ -28,7 +28,7 @@ class VenueInfo extends StatelessWidget {
         Text(
           name,
           style: TextStyle(
-            fontFamily: 'Chakra Petch',
+            fontFamily: 'Hussar',
             fontSize: 24,
             color: const Color(0xff2e2e2e),
             fontWeight: FontWeight.w700,
@@ -68,7 +68,7 @@ class VenueInfo extends StatelessWidget {
                     Text(
                       price.toString(),
                       style: TextStyle(
-                        fontFamily: 'Montserrat',
+                        fontFamily: 'Hussar',
                         fontSize: 20,
                         color: const Color(0xff2e2e2e),
                         fontWeight: FontWeight.w600,
@@ -78,7 +78,7 @@ class VenueInfo extends StatelessWidget {
                     Text(
                       " EGP/ Hour",
                       style: TextStyle(
-                        fontFamily: 'Montserrat',
+                        fontFamily: 'Hussar',
                         fontSize: 17,
                         color: const Color(0xff2e2e2e),
                         letterSpacing: 0.96,

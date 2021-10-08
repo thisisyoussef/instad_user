@@ -14,12 +14,14 @@ class BookedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white.withOpacity(0.9),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: BookingDetailsCard(
-              isListview: false,
-              booking: booking,
+        body: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: BookingDetailsCard(
+                isListview: false,
+                booking: booking,
+              ),
             ),
           ),
         ));

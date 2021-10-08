@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:instad_user/data/user_details.dart';
 import 'package:instad_user/screens/bookedPage/booked_page.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +59,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                   child: Text(
                     (!booked ? "SLIDE TO BOOK" : "BOOKED"),
                     style: TextStyle(
-                      fontFamily: 'Montserrat',
+                      fontFamily: 'Hussar',
                       fontSize: 18,
                       //color: const Color(0xffffffff),
                       //letterSpacing: 2.24,
@@ -141,9 +142,8 @@ class _SliderWidgetState extends State<SliderWidget> {
     if (value > 0.9) {
       print("Booking..");
       value = 1;
-      Provider.of<BookingSelections>(context, listen: false).bookVenue(
-        widget.venueId,
-      );
+      Provider.of<BookingSelections>(context, listen: false)
+          .bookVenue(widget.venueId, UserDetails());
       setState(() {
         _width = _maxWidth * value;
         booked = value > 0.9;

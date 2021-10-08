@@ -33,7 +33,7 @@ class FilterTile extends StatelessWidget {
               Text(
                 taskTitle,
                 style: TextStyle(
-                  fontFamily: 'Montserrat',
+                  fontFamily: 'Hussar',
                   fontSize: 18,
                   color: const Color(0xff2e2e2e),
                 ),
@@ -65,7 +65,7 @@ class FilterTile extends StatelessWidget {
         title: Text(
           taskTitle,
           style: TextStyle(
-            fontFamily: 'Montserrat',
+            fontFamily: 'Hussar',
             fontSize: 18,
             color: const Color(0xff2e2e2e),
           ),

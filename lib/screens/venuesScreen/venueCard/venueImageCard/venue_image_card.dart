@@ -73,7 +73,7 @@ class VenueImageCard extends StatelessWidget {
                 child: Text(
                   venueName,
                   style: TextStyle(
-                    fontFamily: 'Montserrat',
+                    fontFamily: 'Hussar',
                     fontSize: (miniView == false) ? 16 : 12,
                     color: const Color(0xffffffff),
                     letterSpacing: 0.96,

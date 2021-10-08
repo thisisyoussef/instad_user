@@ -151,6 +151,7 @@ class _VenueProfilePageState extends State<VenueProfilePage> {
                           color: const Color(0xffffffff),
                         ),
                         child: SelectDayGrid(
+                          isFilterVersion: false,
                           selectedDay: Provider.of<BookingSelections>(context,
                                   listen: true)
                               .getSelectedDay(),

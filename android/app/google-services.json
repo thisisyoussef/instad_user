@@ -44,6 +44,59 @@
       },
       "oauth_client": [
         {
+          "client_id": "929931134561-0j1ek3ffq8rr84uc530fgbuum6p0aogp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youssefahmed.instad_user",
+            "certificate_hash": "c7bc7056c3b0afb0d81bb330a0a9eac1bdcbe224"
+          }
+        },
+        {
+          "client_id": "929931134561-0m9bkb0l3nu7g3jtekra706c3bdf2jjs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youssefahmed.instad_user",
+            "certificate_hash": "e828870267de232d0b2b1de5db23fa59c047d0f7"
+          }
+        },
+        {
+          "client_id": "929931134561-gjashs81re36l0c4vem822hgkful1fub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youssefahmed.instad_user",
+            "certificate_hash": "4487a11b0f95f01039d5c219fd0164336c3837e5"
+          }
+        },
+        {
+          "client_id": "929931134561-1b9bd828vg3pon5t0oqpilgh8o4cdtps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAG0C-C78xwg_WPCebk_CMMvDxB6JRmXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929931134561-1b9bd828vg3pon5t0oqpilgh8o4cdtps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929931134561:android:4c037b03e8187bfc764c20",
+        "android_client_info": {
+          "package_name": "com.youssefahmed.instad_venue"
+        }
+      },
+      "oauth_client": [
+        {
           "client_id": "929931134561-1b9bd828vg3pon5t0oqpilgh8o4cdtps.apps.googleusercontent.com",
           "client_type": 3
         }

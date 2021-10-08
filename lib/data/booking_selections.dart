@@ -65,7 +65,7 @@ class BookingSelections extends ChangeNotifier {
     return bookings;
   }
 
-  void bookVenue(String venueId) {
+  void bookVenue(String venueId, UserDetails userDetails) {
     //print("logged in user: " + UserDetails().loggedInUserID);
     _firestore.collection('locations').doc(venueId).update({
       "bookedSlots": FieldValue.arrayUnion(_selectedBookings),
@@ -76,8 +76,8 @@ class BookingSelections extends ChangeNotifier {
           .doc(venueId)
           .collection("bookings")
           .add({
-        'bookingName': UserDetails().userName,
-        'phoneNumber': UserDetails().userNumber,
+        'bookingName': userDetails.userName,
+        'phoneNumber': userDetails.userNumber,
         'startTime': _selectedBookings[0],
         'endTime': Timestamp.fromDate(
             _selectedBookings[_selectedBookings.length - 1]
@@ -91,8 +91,8 @@ class BookingSelections extends ChangeNotifier {
           .doc(FirebaseAuth.instance.currentUser.uid)
           .collection("bookings")
           .add({
-        'bookingName': UserDetails().userName,
-        'phoneNumber': UserDetails().userNumber,
+        'bookingName': userDetails.userName,
+        'phoneNumber': userDetails.userNumber,
         'startTime': _selectedBookings[0],
         'endTime': Timestamp.fromDate(
             _selectedBookings[_selectedBookings.length - 1]
@@ -102,7 +102,7 @@ class BookingSelections extends ChangeNotifier {
         'price': _selectedBookings.length * 200,
       }).then((value) => latestBookingId = value.id);
       latestBooking = Booking(
-          phoneNumber: UserDetails().userNumber,
+          phoneNumber: userDetails.userNumber,
           name: UserDetails().userName,
           startTime: DateTime.fromMicrosecondsSinceEpoch(
               _selectedBookings[0].microsecondsSinceEpoch),

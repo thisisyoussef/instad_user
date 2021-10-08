@@ -13,7 +13,7 @@ class HeaderText extends StatelessWidget {
     return Text(
       headerText,
       style: TextStyle(
-        fontFamily: 'Chakra Petch',
+        fontFamily: 'Hussar',
         fontSize: 18,
         color: const Color(0xff2b8116),
         letterSpacing: 1.5,

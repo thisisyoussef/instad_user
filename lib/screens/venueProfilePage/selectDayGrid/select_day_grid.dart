@@ -58,7 +58,7 @@ class SelectDayGrid extends StatelessWidget {
                         .toString()
                         .substring(0, 3),
                     style: TextStyle(
-                      fontFamily: 'Montserrat',
+                      fontFamily: 'Hussar',
                       fontSize: 16,
                       color: Colors.black,
                       letterSpacing: 0.96,
@@ -90,7 +90,7 @@ class SelectDayGrid extends StatelessWidget {
                         child: Text(
                           items[day].day.toString(),
                           style: TextStyle(
-                            fontFamily: 'Montserrat',
+                            fontFamily: 'Hussar',
                             fontSize: 18,
                             color: selectedDay.day == items[day].day
                                 ? Colors.white

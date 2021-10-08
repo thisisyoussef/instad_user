@@ -54,7 +54,7 @@ class _VenuesScreenState extends State<VenuesScreen> {
                                     .getSport() +
                                 " Venues",
                             style: TextStyle(
-                              fontFamily: 'Chakra Petch',
+                              fontFamily: 'Hussar',
                               fontSize: 18,
                               color: const Color(0xcb2e2e2e),
                               letterSpacing: 1.5,
@@ -65,7 +65,7 @@ class _VenuesScreenState extends State<VenuesScreen> {
                           Text(
                             DateFormat.MMMd().format(DateTime.now()).toString(),
                             style: TextStyle(
-                              fontFamily: 'Montserrat',
+                              fontFamily: 'Hussar',
                               fontSize: 13,
                               color: const Color(0xff2e2e2e),
                               letterSpacing: 0.96,

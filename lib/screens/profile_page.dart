@@ -31,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Text(
           'Upcoming',
           style: TextStyle(
-            fontFamily: 'Montserrat',
+            fontFamily: 'Hussar',
             fontSize: 16,
             color: segmentedControlGroupValue != 0
                 ? Color(0xFF2B8116)
@@ -45,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
       1: Text(
         'History',
         style: TextStyle(
-          fontFamily: 'Montserrat',
+          fontFamily: 'Hussar',
           fontSize: 16,
           color: segmentedControlGroupValue != 1
               ? Color(0xFF2B8116)
@@ -77,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Text(
                   'Profile',
                   style: TextStyle(
-                    fontFamily: 'Chakra Petch',
+                    fontFamily: 'Hussar',
                     fontSize: 24,
                     color: const Color(0xff2e2e2e),
                     fontWeight: FontWeight.w700,
@@ -100,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Text(
                   'Username',
                   style: TextStyle(
-                    fontFamily: 'Montserrat',
+                    fontFamily: 'Hussar',
                     fontSize: 18,
                     color: const Color(0xff2e2e2e),
                   ),
@@ -109,7 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Text(
                   'name@mail.com',
                   style: TextStyle(
-                    fontFamily: 'Montserrat',
+                    fontFamily: 'Hussar',
                     fontSize: 12,
                     color: const Color(0xff2e2e2e),
                     letterSpacing: 0.8,

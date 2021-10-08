@@ -30,7 +30,7 @@ class AmenityTile extends StatelessWidget {
                     child: Text(
                       amenity,
                       style: TextStyle(
-                        fontFamily: 'Montserrat',
+                        fontFamily: 'Hussar',
                         fontSize: 18,
                         color: const Color(0xff2b8116),
                         fontWeight: FontWeight.w500,

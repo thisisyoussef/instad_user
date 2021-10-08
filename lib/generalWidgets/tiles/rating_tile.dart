@@ -32,7 +32,7 @@ class RatingTile extends StatelessWidget {
           Text(
             venueRating.toString(),
             style: TextStyle(
-              fontFamily: 'Montserrat',
+              fontFamily: 'Hussar',
               fontSize: (miniView == false) ? 16 : 12,
               color: const Color(0xffffffff),
               letterSpacing: 0.96,

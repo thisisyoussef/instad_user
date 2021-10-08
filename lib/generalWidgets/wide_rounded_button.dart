@@ -37,7 +37,7 @@ class WideRoundedButton extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  fontFamily: 'Montserrat',
+                  fontFamily: 'Hussar',
                   fontSize: 14,
                   color: isEnabled ? Colors.white : const Color(0xff707070),
                   letterSpacing: 2.24,

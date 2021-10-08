@@ -24,7 +24,7 @@ class DateQuery extends StatelessWidget {
                 child: Text(
                   "Pick the day you'd like to play",
                   style: TextStyle(
-                    fontFamily: 'Montserrat',
+                    fontFamily: 'Hussar',
                     fontSize: 20,
                     color: const Color(0xff2e2e2e),
                     fontWeight: FontWeight.w600,

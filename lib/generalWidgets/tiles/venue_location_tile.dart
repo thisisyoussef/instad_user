@@ -34,7 +34,7 @@ class VenueLocationTile extends StatelessWidget {
           Text(
             venueArea + ', ' + venueDistance.toString(),
             style: TextStyle(
-              fontFamily: 'Montserrat',
+              fontFamily: 'Hussar',
               fontSize: 14,
               color: const Color(0xffffffff),
               letterSpacing: 0.96,

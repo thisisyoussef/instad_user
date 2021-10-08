@@ -100,10 +100,7 @@ class _ListCardState extends State<ListCard> {
                     miniView: false,
                     venueImage: Align(
                       alignment: Alignment.center,
-                      child: Hero(
-                        child: venueImage,
-                        tag: "venue image",
-                      ),
+                      child: venueImage,
                     ),
                     venueName: widget.venueName,
                     venueArea: widget.venueArea,

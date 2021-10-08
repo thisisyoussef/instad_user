@@ -20,7 +20,7 @@ class HeadingTitle extends StatelessWidget {
         Text(
           heading,
           style: TextStyle(
-            fontFamily: 'Montserrat',
+            fontFamily: 'Hussar',
             fontSize: 20 * this.fontScale,
             color: const Color(0xff2e2e2e),
             letterSpacing: 0.8,
@@ -32,7 +32,7 @@ class HeadingTitle extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-              fontFamily: 'Montserrat',
+              fontFamily: 'Hussar',
               fontSize: 25 * this.fontScale,
               color: const Color(0xff2e2e2e),
               fontWeight: FontWeight.w700,

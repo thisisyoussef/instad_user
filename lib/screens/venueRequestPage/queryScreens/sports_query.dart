@@ -37,7 +37,7 @@ class SportsQuery extends StatelessWidget {
               child: Text(
                 'Select a sport to play',
                 style: TextStyle(
-                  fontFamily: 'Montserrat',
+                  fontFamily: 'Hussar',
                   fontSize: 14,
                   color: const Color(0xff2e2e2e),
                   fontWeight: FontWeight.w600,

@@ -3,10 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'venue.dart';
 import 'package:instad_user/screens/venuesScreen/venueCard/list_card.dart';
 
+List<Venue> venues = [];
+List<ListCard> listCards = [];
+
 class VenueList extends ChangeNotifier {
   VenueList();
-  List<Venue> venues= [];
-  List<ListCard> listCards;
 
   void addVenue(Venue venue) {
     venues.add(venue);
@@ -16,6 +17,10 @@ class VenueList extends ChangeNotifier {
   void removeVenue(Venue venue) {
     venues.remove(venue);
     notifyListeners();
+  }
+
+  List<Venue> getVenues() {
+    return venues;
   }
 
   bool inList(Venue venue) {

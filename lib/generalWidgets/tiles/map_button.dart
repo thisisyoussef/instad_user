@@ -18,7 +18,7 @@ class MapButton extends StatelessWidget {
                   Text(
                     'Map',
                     style: TextStyle(
-                      fontFamily: 'Montserrat',
+                      fontFamily: 'Hussar',
                       fontSize: 16,
                       color: const Color(0xff2b8116),
                     ),

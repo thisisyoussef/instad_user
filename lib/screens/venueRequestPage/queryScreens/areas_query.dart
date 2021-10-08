@@ -41,7 +41,7 @@ class AreasQuery extends StatelessWidget {
               child: Text(
                 "Select areas you'd like to play in",
                 style: TextStyle(
-                  fontFamily: 'Montserrat',
+                  fontFamily: 'Hussar',
                   fontSize: 14,
                   color: const Color(0xff2e2e2e),
                   fontWeight: FontWeight.w600,

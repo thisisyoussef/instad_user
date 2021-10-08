@@ -43,7 +43,7 @@ class FilterTitleBar extends StatelessWidget {
                     Text(
                       'Cancel',
                       style: TextStyle(
-                        fontFamily: 'Montserrat',
+                        fontFamily: 'Hussar',
                         fontSize: 16,
                         color: const Color(0xff2e2e2e),
                       ),
@@ -59,7 +59,7 @@ class FilterTitleBar extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  fontFamily: 'Chakra Petch',
+                  fontFamily: 'Hussar',
                   fontSize: 21,
                   color: const Color(0xff2e2e2e),
                   fontWeight: FontWeight.w700,
@@ -75,7 +75,7 @@ class FilterTitleBar extends StatelessWidget {
                         ? Text(
                             'Reset',
                             style: TextStyle(
-                              fontFamily: 'Montserrat',
+                              fontFamily: 'Hussar',
                               fontSize: 18,
                               color: const Color(0xffac4444),
                             ),
@@ -84,7 +84,7 @@ class FilterTitleBar extends StatelessWidget {
                         : Text(
                             'Save',
                             style: TextStyle(
-                              fontFamily: 'Montserrat',
+                              fontFamily: 'Hussar',
                               fontSize: 18,
                               color: const Color(0xff2b8116),
                             ),

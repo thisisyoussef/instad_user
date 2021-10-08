@@ -45,7 +45,7 @@ class FilterNamePanel extends StatelessWidget {
                     child: Text(
                       filter,
                       style: TextStyle(
-                        fontFamily: 'Chakra Petch',
+                        fontFamily: 'Hussar',
                         fontSize: 15,
                         color: const Color(0xff707070),
                         fontWeight: FontWeight.w700,
@@ -81,7 +81,7 @@ class FilterNamePanel extends StatelessWidget {
                                               ? "Add"
                                               : "null",
                       style: TextStyle(
-                        fontFamily: 'Montserrat',
+                        fontFamily: 'Hussar',
                         fontSize: filter == "Areas" &&
                                 (Provider.of<VenueFilters>(context)
                                         .getAreas("Selected")

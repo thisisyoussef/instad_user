@@ -27,7 +27,7 @@ class SelectTimeGrid extends StatelessWidget {
                   : 'PM'
               : "",
           style: TextStyle(
-            fontFamily: 'Montserrat',
+            fontFamily: 'Hussar',
             fontSize: 14,
             color: const Color(0xff2e2e2e),
             letterSpacing: 0.8,

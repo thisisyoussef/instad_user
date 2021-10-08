@@ -1,14 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:instad_user/models/timeslot.dart';
 
 class VenueFilters extends ChangeNotifier {
   String _area = "Tagamoa";
   List<String> _areas = [];
   List<String> _unappliedAreas = [];
   List<String> _selectedAreas = [];
+
   DateTime _startDate = DateTime(2021);
+  DateTime _selectedStartDate = DateTime(2021);
+  DateTime _unappliedStartDate = DateTime(2021);
+
+  DateTime _startTime = DateTime(2021);
+  DateTime _selectedStartTime = DateTime(2021);
+  DateTime _unappliedStartTime = DateTime(2021);
+
+  DateTime _endTime = DateTime(2021);
+  DateTime _selectedEndTime = DateTime(2021);
+  DateTime _unappliedEndTime = DateTime(2021);
+
   DateTime _endDate = DateTime(2022);
   String _sport = "Football";
   int _distanceFromUser = 0;
@@ -16,7 +27,6 @@ class VenueFilters extends ChangeNotifier {
   List<String> _amenities;
   double _rating = 6.0;
   String _selectedArea = "Tagamoa";
-  DateTime _selectedStartDate = DateTime(2021);
   DateTime _selectedEndDate = DateTime(2022);
   String _selectedSport = "Football";
   int _selecteDistanceFromUser = 0;
@@ -24,7 +34,6 @@ class VenueFilters extends ChangeNotifier {
   List<String> _selectedAmenities;
   double _selectedRating = 6.0;
   String _unappliedArea = "Tagamoa";
-  DateTime _unappliedStartDate = DateTime(2021);
   DateTime _unappliedEndDate = DateTime(2022);
   int _unappliedDistanceFromUser = 0;
   String _unappliedSport = "Football";
@@ -32,16 +41,22 @@ class VenueFilters extends ChangeNotifier {
   List<String> _unappliedAmenities;
   double _unappliedRating = 6.0;
   void reset() {
+    _startTime = DateTime(2021);
+    _selectedStartTime = DateTime(2021);
+    _endTime = DateTime(2021);
+    _selectedEndTime = DateTime(2021);
+    _selectedAreas = [];
     _areas = [];
-    _startDate = null;
-    _endDate = null;
+    _startDate = DateTime(2021);
+    _selectedStartDate = DateTime(2021);
     _sport = "";
     _selectedSport = "";
     _unappliedSport = "";
     _distanceFromUser = null;
-    _maxPrice = null;
-    _amenities = null;
-    _rating = null;
+    _maxPrice = 750;
+    _selectedMaxPrice = 750;
+    _amenities = [];
+    _rating = 5;
     notifyListeners();
   }
 
@@ -156,6 +171,50 @@ class VenueFilters extends ChangeNotifier {
       _selectedStartDate = newDate;
     } else if (stage == "Applied") {
       _startDate = newDate;
+    }
+    notifyListeners();
+  }
+
+  DateTime getStartTime(String stage) {
+    if (stage == "Unapplied") {
+      return _unappliedStartTime;
+    } else if (stage == "Selected") {
+      return _selectedStartTime;
+    } else if (stage == "Applied") {
+      return _startTime;
+    }
+    return null;
+  }
+
+  void setStartTime(String stage, DateTime newTime) {
+    if (stage == "Unapplied") {
+      _unappliedStartTime = newTime;
+    } else if (stage == "Selected") {
+      _selectedStartTime = newTime;
+    } else if (stage == "Applied") {
+      _startTime = newTime;
+    }
+    notifyListeners();
+  }
+
+  DateTime getEndTime(String stage) {
+    if (stage == "Unapplied") {
+      return _unappliedEndTime;
+    } else if (stage == "Selected") {
+      return _selectedEndTime;
+    } else if (stage == "Applied") {
+      return _endTime;
+    }
+    return null;
+  }
+
+  void setEndTime(String stage, DateTime newTime) {
+    if (stage == "Unapplied") {
+      _unappliedEndTime = newTime;
+    } else if (stage == "Selected") {
+      _selectedEndTime = newTime;
+    } else if (stage == "Applied") {
+      _endTime = newTime;
     }
     notifyListeners();
   }

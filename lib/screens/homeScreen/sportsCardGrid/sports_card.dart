@@ -18,7 +18,7 @@ class SportsCard extends StatelessWidget {
                 .setUnappliedSport(sport)
             : Provider.of<VenueFilters>(context, listen: false)
                 .setSelectedSport(sport);
-        InstadRoot.tabController.animateTo(1);
+        InstadRoot.currentIndex = 1;
       },
       child: Container(
         //height: 110,
@@ -69,7 +69,7 @@ class SportsCard extends StatelessWidget {
             Text(
               sport,
               style: TextStyle(
-                fontFamily: 'Montserrat',
+                fontFamily: 'Hussar',
                 fontSize: 16,
                 color: const Color(0xffffffff),
                 fontWeight: FontWeight.w600,

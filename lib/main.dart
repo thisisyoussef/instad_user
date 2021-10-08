@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:instad_user/data/instad_data.dart';
 import 'package:instad_user/models/venue_list.dart';
+import 'package:instad_user/screens/splash_screen.dart';
+import 'package:instad_user/screens/venueRequestPage/venue_request_page.dart';
 import 'screens/bookedPage/booked_page.dart';
 import 'package:instad_user/screens/loginScreen/login_page.dart';
 import 'package:instad_user/screens/register_screen.dart';
@@ -44,6 +46,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+          indicatorColor: Colors.green,
+          fontFamily: 'Hussar',
           appBarTheme: AppBarTheme(color: Colors.black),
           primarySwatch: Colors.green,
           sliderTheme: SliderTheme.of(context).copyWith(
@@ -59,8 +63,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
         //home: InstadRoot(),
-        initialRoute: LoginPage.id,
+        initialRoute: SplashScreen.id,
         routes: {
+          SplashScreen.id: (context) => SplashScreen(),
           InstadRoot.id: (context) => InstadRoot(),
           LoginPage.id: (context) => LoginPage(),
           //HomePage.id: (context) => HomePage(),
@@ -69,7 +74,8 @@ class MyApp extends StatelessWidget {
           BookedPage.id: (context) => BookedPage(),
           RegisterScreen.id: (context) => RegisterScreen(),
           //ListCard.id: (context) => ListCard(),
-          VenuesScreen.id: (context) => VenuesScreen()
+          VenuesScreen.id: (context) => VenuesScreen(),
+          VenueRequestPage.id: (context) => VenueRequestPage(),
         },
       ),
     );

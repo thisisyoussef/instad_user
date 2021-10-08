@@ -15,12 +15,10 @@ class HorizontalCardView extends StatefulWidget {
       this.scrollTo,
       this.scrollController})
       : super(key: key);
-
   final List<ListCard> listCards;
   final bool isMapView;
   final ScrollController scrollController;
   final Function scrollTo;
-
   @override
   _HorizontalCardViewState createState() => _HorizontalCardViewState();
 }
@@ -35,17 +33,16 @@ class _HorizontalCardViewState extends State<HorizontalCardView> {
         //fit: BoxFit.fill,
       );
     });
-
     return image;
   }
 
-  @override
-  ScrollController scrollController =
+  ScrollController _scrollController =
       ScrollController(initialScrollOffset: 0.0);
+  @override
   Widget build(BuildContext context) {
     setState(() {
       try {
-        widget.scrollTo(scrollController);
+        widget.scrollTo(_scrollController);
       } catch (e) {}
     });
 
@@ -53,16 +50,18 @@ class _HorizontalCardViewState extends State<HorizontalCardView> {
       height: 112,
       width: MediaQuery.of(context).size.width,
       child: ListView.builder(
-        controller: scrollController,
+        controller: _scrollController,
         itemCount: widget.listCards.length,
         scrollDirection: Axis.horizontal,
         reverse: false,
         itemBuilder: (context, position) {
           var listCard = widget.listCards[position];
+          print(listCard.venueName);
+          print(listCard.venueId);
+          print(listCard.venueAmenities.toString());
           return InkWell(
             onTap: () {
               print(listCard.venueId);
-
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => VenueProfilePage(
@@ -79,7 +78,6 @@ class _HorizontalCardViewState extends State<HorizontalCardView> {
                   ),
                 ),
               );
-
               // Navigator.pushNamed(context, VenuePage.id);
             },
             child: Container(
@@ -111,8 +109,6 @@ class _HorizontalCardViewState extends State<HorizontalCardView> {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return Container(
-// width: MediaQuery.of(context).size.width,
-// height: 300,
                                   child: CircularProgressIndicator(),
                                 );
                               }
@@ -158,9 +154,6 @@ class _HorizontalCardViewState extends State<HorizontalCardView> {
                                   if (snapshot.connectionState ==
                                       ConnectionState.waiting) {
                                     return Container(
-// width: MediaQuery.of(context).size.width,
-// height: 300,
-
                                       child: CircularProgressIndicator(),
                                     );
                                   }
@@ -171,7 +164,7 @@ class _HorizontalCardViewState extends State<HorizontalCardView> {
                             Text(
                               listCard.venueName,
                               style: TextStyle(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Hussar',
                                 fontSize: 16,
                                 color: const Color(0xff2e2e2e),
                                 letterSpacing: 0.96,
@@ -182,7 +175,7 @@ class _HorizontalCardViewState extends State<HorizontalCardView> {
                             Text(
                               listCard.venueDistance.toString() + " KM",
                               style: TextStyle(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Hussar',
                                 fontSize: 16,
                                 color: const Color(0x652e2e2e),
                                 letterSpacing: 0.96,

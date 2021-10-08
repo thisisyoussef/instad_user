@@ -58,7 +58,7 @@ class VenueBottomSheet extends StatelessWidget {
                                 child: Text(
                                   'Total',
                                   style: TextStyle(
-                                    fontFamily: 'Montserrat',
+                                    fontFamily: 'Hussar',
                                     fontSize: 16,
                                     color: const Color(0xff2e2e2e),
                                     letterSpacing: 0.8,
@@ -70,7 +70,7 @@ class VenueBottomSheet extends StatelessWidget {
                                 (bookings.length * venuePrice).toString() +
                                     ' EGP',
                                 style: TextStyle(
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: 'Hussar',
                                   fontSize: 20,
                                   color: const Color(0xff2b8116),
                                   fontWeight: FontWeight.w700,
@@ -96,7 +96,7 @@ class VenueBottomSheet extends StatelessWidget {
                                   Text(
                                     'Details',
                                     style: TextStyle(
-                                      fontFamily: 'Montserrat',
+                                      fontFamily: 'Hussar',
                                       fontSize: 16,
                                       color: const Color(0xff2b8116),
                                     ),
@@ -114,7 +114,9 @@ class VenueBottomSheet extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 16.0),
-                        child: SliderWidget(venueId: venueId,),
+                        child: SliderWidget(
+                          venueId: venueId,
+                        ),
                       ),
                     ],
                   ),
@@ -163,7 +165,7 @@ class VenueBottomSheet extends StatelessWidget {
                           Text(
                             venuePrice.toString(),
                             style: TextStyle(
-                              fontFamily: 'Montserrat',
+                              fontFamily: 'Hussar',
                               fontSize: 20,
                               color: const Color(0xff2e2e2e),
                               fontWeight: FontWeight.w600,
@@ -175,7 +177,7 @@ class VenueBottomSheet extends StatelessWidget {
                             child: Text(
                               'EGP/ Hour',
                               style: TextStyle(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Hussar',
                                 fontSize: 17,
                                 color: const Color(0xff2e2e2e),
                               ),
@@ -191,7 +193,7 @@ class VenueBottomSheet extends StatelessWidget {
                             Text(
                               'Total',
                               style: TextStyle(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Hussar',
                                 fontSize: 16,
                                 color: const Color(0xff2e2e2e),
                               ),
@@ -202,7 +204,7 @@ class VenueBottomSheet extends StatelessWidget {
                               child: Text(
                                 (bookings.length * venuePrice).toString(),
                                 style: TextStyle(
-                                  fontFamily: 'Chakra Petch',
+                                  fontFamily: 'Hussar',
                                   fontSize: 23,
                                   color: const Color(0xff2b8116),
                                   fontWeight: FontWeight.w700,
@@ -215,7 +217,7 @@ class VenueBottomSheet extends StatelessWidget {
                               child: Text(
                                 'EGP',
                                 style: TextStyle(
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: 'Hussar',
                                   fontSize: 16,
                                   color: const Color(0xff2e2e2e),
                                 ),
@@ -266,7 +268,7 @@ class BookingDetailBox extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontFamily: 'Montserrat',
+                fontFamily: 'Hussar',
                 fontSize: 20,
                 color: const Color(0xff2e2e2e),
                 fontWeight: FontWeight.w600,
@@ -295,7 +297,7 @@ class BookingDetailBox extends StatelessWidget {
                                       .toString() +
                                   " PM",
                       style: TextStyle(
-                        fontFamily: 'Montserrat',
+                        fontFamily: 'Hussar',
                         fontSize: 18,
                         color: const Color(0xff2e2e2e),
                         letterSpacing: 0.96,
@@ -315,7 +317,7 @@ class BookingDetailBox extends StatelessWidget {
                                 (subtitle[0] + 1).toString() +
                                 " AM",
                         style: TextStyle(
-                          fontFamily: 'Montserrat',
+                          fontFamily: 'Hussar',
                           fontSize: 18,
                           color: const Color(0xff2e2e2e),
                           letterSpacing: 0.96,
@@ -325,7 +327,7 @@ class BookingDetailBox extends StatelessWidget {
                     : Text(
                         subtitle,
                         style: TextStyle(
-                          fontFamily: 'Montserrat',
+                          fontFamily: 'Hussar',
                           fontSize: 18,
                           color: const Color(0xff2e2e2e),
                           letterSpacing: 0.96,
