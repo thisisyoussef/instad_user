@@ -146,10 +146,10 @@ class BookingDetailsCard extends StatelessWidget {
                               child: Container(
                                 child: HeadingTitle(
                                   heading: "Time",
-                                  title: DateFormat.jm()
+                                  title: DateFormat.j()
                                           .format(booking.startTime) +
                                       " to " +
-                                      DateFormat.jm().format(booking.endTime),
+                                      DateFormat.j().format(booking.endTime),
                                   fontScale: this.fontScale,
                                 ),
                               ),
@@ -219,7 +219,7 @@ class BookingDetailsCard extends StatelessWidget {
               ? TextButton(
                   onPressed: () {
                     Navigator.popUntil(
-                        context, ModalRoute.withName(VenueRequestPage.id));
+                        context, (route) => Navigator.canPop(context) == false);
                   },
                   child: Text(
                     'Close',
@@ -236,7 +236,7 @@ class BookingDetailsCard extends StatelessWidget {
               : Container() //HeadingTitle(heading: "Total", title: "400 EGP"),
         ],
       ),
-      height: !isListview ? MediaQuery.of(context).size.height / 1.45 : null,
+      //height: !isListview ? MediaQuery.of(context).size.height / 1.45 : null,
       width: MediaQuery.of(context).size.width,
       decoration: !isListview
           ? BoxDecoration(
