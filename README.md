@@ -1,3 +1,5 @@
+> **Part of the [Instad Ecosystem](https://github.com/thisisyoussef/instad)** — a 3-app platform for sports venue discovery and booking.
+
 # Instad User App
 
 ## Table of Contents
