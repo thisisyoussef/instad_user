@@ -1,70 +1,31 @@
 > **Part of the [Instad Ecosystem](https://github.com/thisisyoussef/instad)** — a 3-app platform for sports venue discovery and booking.
 
-# Instad User App
+# Instad User — Athlete-Facing Venue Discovery App
 
-## Table of Contents
+The user-facing mobile app in the Instad ecosystem. Athletes discover nearby sports venues on a map, filter by sport type and amenities, view details and reviews, and book time slots.
 
-* [Project Overview](#project-overview)
-* [Installation Instructions](#installation-instructions)
-* [Usage Guide](#usage-guide)
-* [Features and Functionality](#features-and-functionality)
-* [Contributing Guidelines](#contributing-guidelines)
-* [License Information](#license-information)
-* [Contact Information](#contact-information)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?logo=dart&logoColor=white)
+![Google Maps](https://img.shields.io/badge/Google_Maps-4285F4?logo=googlemaps&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=black)
 
-## Project Overview
+## Features
 
-Instad User App is a cross-platform mobile application built with Flutter, primarily focused on providing users with a seamless and user-friendly experience while browsing the latest updates from their favorite social media platforms.
+- Map-based venue discovery with Google Maps SDK
+- Search and filter by sport, distance, amenities, price
+- Venue detail pages with photos, reviews, and pricing
+- Time slot selection and booking flow
+- User authentication and profile management
 
-Please note that this is a work-in-progress and certain features may still be under development or subject to change.
+## Tech Stack
 
-## Installation Instructions
+Flutter, Dart, Google Maps SDK, Firebase (Auth, Firestore, Storage)
 
-In order to run and debug this project locally, you’d need to follow these steps:
+## Running
 
-1. Install Flutter and Dart SDK on your machine, following the official documentation: https://flutter.dev/docs/get-started/install
-2. Install the necessary packages by running: `flutter pub get`
-3. Make sure you have an Android or iOS simulator/emulator installed to run the app.
-4. To run the app, simply execute the following command in the terminal: `flutter run`
+```bash
+git clone https://github.com/thisisyoussef/instad_user.git
+cd instad_user && flutter pub get && flutter run
+```
 
-## Usage Guide
-
-1. After you have successfully installed and launched the application, you will be greeted by the Home screen.
-2. Register using your email address or log in if you already have an existing account.
-3. Browse through the latest updates from your favorite social media platforms, seamlessly integrated into the app.
-4. Like, share, and comment on the posts that you find interesting.
-5. Manage your posts, followers, and settings from the personal profile section.
-
-## Features and Functionality
-
-- Cross-platform compatibility (iOS & Android)
-- User authentication (Registration & Login)
-- Browsing through the latest updates from various social media platforms
-- Liking, sharing, and commenting on posts
-- Personal profile management
-- Assets folder for easy customization and branding
-- Clean code with well-organized structure
-
-## Contributing Guidelines
-
-We welcome contributions from the community in the form of bug reports, feature requests, and code contributions via pull requests. Please follow these guidelines when contributing:
-
-1. Create an issue describing the problem or feature request and assign it to yourself.
-2. Fork the repository.
-3. Create a new branch with a descriptive name.
-4. Make your code changes in the branch, following the existing coding conventions.
-5. Update the documentation and tests if necessary.
-6. Submit a pull request to the main branch, referencing the corresponding issue in the description.
-
-## License Information
-
-This project is licensed under the MIT License. Please refer to the LICENSE file in the root of the repository for more information.
-
-## Contact Information
-
-For any questions, please feel free to reach out to the project owner Youssef:
-
-* Email: thisisyoussef@example.com
-* GitHub: https://github.com/thisisyoussef
-
-By creating a Readme.md file that effectively communicates the essence of the project, its installation and usage instructions, key features, contribution guidelines, license information, and contact details, you can showcase your skills and expertise while also providing a comprehensive overview of the project for recruiters and users.
+Requires Google Maps API key and Firebase config files.
